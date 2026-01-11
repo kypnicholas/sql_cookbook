@@ -22,10 +22,9 @@ DROP DATABASE IF EXISTS chinook;
 /*******************************************************************************
    Create database
 ********************************************************************************/
-CREATE DATABASE chinook;
-
-
-\c chinook;
+-- Database creation and client meta-commands removed.
+-- The original file created and switched to a database (DROP/CREATE + "\\c chinook").
+-- Supabase runs inside an existing database; keep only schema + data statements below.
 
 
 /*******************************************************************************
