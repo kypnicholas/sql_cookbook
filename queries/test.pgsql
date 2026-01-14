@@ -1,1 +1,0 @@
-SELECT * FROM public.album LIMIT 100;
