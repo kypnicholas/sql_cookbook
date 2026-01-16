@@ -2,12 +2,7 @@
 
 Purpose
 - This checklist organizes the full set of SQL queries, DBA tasks, and exercises you'll implement for the Chinook "SQL Cookbook".
-- Use the checkboxes to track progress. Each item includes a brief goal, suggested repo path(s), and a "definition of done" so you know when to mark it complete.
 
-How to use
-- Edit this file in VS Code and toggle the checkboxes as you finish items (on GitHub the boxes are interactive).
-- For each completed item, commit with a short message, e.g.:
-  - git add SECTIONS.md && git commit -m "Mark A1 complete: simple SELECTs and filters"
 - Definition of Done (default for every checklist item):
   1. SQL file(s) committed to the repo (suggested path included).
   2. Example output saved (CSV or screenshot) in an `artifacts/` or `examples/` folder.
@@ -123,9 +118,3 @@ Notes about ordering and dependency
 2. Add queries/005_joins_basic.sql with a few join examples (tracks → albums → artists). Mark B5 done.
 3. Open a PR with those files; the PR CI (pr-check.yml) will run smoke tests. If they pass, merge to main.
 4. Then pick the aggregation/window set (C9–D16) to produce analytics-focused content.
-
-If you'd like, I can:
-- Generate the first 8 SQL files (A1–A4, B5–B8) with ready-to-run SQL and brief comments so you can paste them into queries/ and commit.
-- Or create a short "queries/README.md" entry for each of the first 20 queries describing intent and expected output.
-
-Which of those helper tasks would you like me to do next? (e.g., "Generate A1–A4 and B5–B6 SQL files")
