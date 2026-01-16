@@ -15,6 +15,7 @@ How to use
   4. If relevant, a test added under `tests/` and passing in CI.
 
 Recommended next steps (priority)
+0. Create DB schema diagram (ERD) — generate an ER diagram from `migrations/001_create_schema.sql` or from a live DB and save it under `docs/` or `artifacts/` for reference.
 1. Basics & Joins: A1–A4, B5–B8 — quick wins to populate queries/ and get CI to run.
 2. Aggregations & Window Functions: C9–C12, D13–D16 — analytics-focused, high impact.
 3. Indexing & EXPLAIN: G23, H27 — show performance improvements with before/after.
@@ -119,10 +120,11 @@ Notes about ordering and dependency
 - Some admin items (roles, partitioning) may require elevated privileges in Supabase. If your project account lacks permission, document the steps and show local/CI simulation.
 
 "What's next" — immediate actions you can do right now
-1. In VS Code, create queries/001_select_filters.sql and commit a couple of simple SELECT examples. Mark A1 done.
-2. Add queries/005_joins_basic.sql with a few join examples (tracks → albums → artists). Mark B5 done.
-3. Open a PR with those files; the PR CI (pr-check.yml) will run smoke tests. If they pass, merge to main.
-4. Then pick the aggregation/window set (C9–D16) to produce analytics-focused content.
+1. Generate the DB schema diagram first: parse `migrations/001_create_schema.sql` or connect to a test DB and produce `docs/035_er_diagram.svg` or `artifacts/chinook.png`.
+2. In VS Code, create queries/001_select_filters.sql and commit a couple of simple SELECT examples. Mark A1 done.
+3. Add queries/005_joins_basic.sql with a few join examples (tracks → albums → artists). Mark B5 done.
+4. Open a PR with those files; the PR CI (pr-check.yml) will run smoke tests. If they pass, merge to main.
+5. Then pick the aggregation/window set (C9–D16) to produce analytics-focused content.
 
 If you'd like, I can:
 - Generate the first 8 SQL files (A1–A4, B5–B8) with ready-to-run SQL and brief comments so you can paste them into queries/ and commit.
