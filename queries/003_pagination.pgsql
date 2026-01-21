@@ -31,7 +31,11 @@ WHERE (billing_country = 'USA' AND invoice_id > 50)
 ORDER BY billing_country, invoice_id
 LIMIT 10;
 
-
+-- Paginate by date
+SELECT * FROM public.invoice
+WHERE invoice_date > '2022-01-01'
+ORDER BY invoice_date, invoice_id
+LIMIT 10;
 
 
 

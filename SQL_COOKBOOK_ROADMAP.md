@@ -19,18 +19,18 @@ Recommended priority
 Detailed checklist with expected queries / activities
 
 A. Basic queries (fundamentals)
-- [ ] A1 — Simple SELECTs & filters (queries/001_select_filters.sql)
+- [x] A1 — Simple SELECTs & filters (queries/001_select_filters.sql)
   - Expected tasks:
     - Select specific columns: customers email + country.
     - Filter by equality and range: invoices where total > 10.
     - Use LIKE/ILIKE for substring matches: tracks with "love" in name.
     - Save 3 example result CSVs (country filter, price filter, text search).
-- [ ] A2 — DISTINCT and COUNT(DISTINCT) (queries/002_distinct_counts.sql)
+- [x] A2 — DISTINCT and COUNT(DISTINCT) (queries/002_distinct_counts.sql)
   - Expected queries:
     - Count distinct billing_country in invoices.
     - List distinct genres present in tracks.
     - Show emails uniqueness check: COUNT(*) vs COUNT(DISTINCT email).
-- [ ] A3 — Pagination & keyset patterns (queries/003_pagination.sql)
+- [x] A3 — Pagination & keyset patterns (queries/003_pagination.sql)
   - Expected activities/queries:
     - Classic OFFSET/LIMIT pagination example:
       - SELECT track_id, name FROM tracks ORDER BY track_id LIMIT 20 OFFSET 40;
@@ -38,7 +38,6 @@ A. Basic queries (fundamentals)
       - SELECT track_id, name FROM tracks WHERE track_id > :last_seen_id ORDER BY track_id LIMIT 20;
     - Show how to page by date (e.g., invoice_date) using last-seen timestamp.
     - Explain pros/cons: OFFSET cost vs keyset stability.
-    - Provide example that uses ROW_NUMBER() for a stable page when ordering by a non-unique column.
 - [ ] A4 — Casting, formatting, simple type conversions (queries/004_casts_formatting.sql)
   - Expected tasks:
     - Format milliseconds to minutes/seconds: milliseconds/1000.0 AS seconds.
