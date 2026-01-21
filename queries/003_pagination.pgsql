@@ -24,7 +24,12 @@ WHERE invoice_id > 20
 ORDER BY invoice_id
 LIMIT 10;
 
-
+-- Paginate with composite keys
+SELECT * FROM public.invoice
+WHERE (billing_country = 'USA' AND invoice_id > 50)
+   OR (billing_country > 'USA')
+ORDER BY billing_country, invoice_id
+LIMIT 10;
 
 
 
