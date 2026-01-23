@@ -12,4 +12,11 @@ left join public.track track on album.album_id = track.album_id
 where track.album_id IS NULL
 limit 5;
 
-
+-- Join artists with their albums and count the number of tracks per album--
+SELECT artist.name AS artist_name,album.title AS album_title, count(track.track_id) AS track_count
+FROM public.album album
+left join public.track track on album.album_id = track.album_id
+left join public.artist artist on album.artist_id = artist.artist_id
+group by 1, 2
+order by 3 desc
+limit 5;
