@@ -1,3 +1,4 @@
+-- Display tracks in a specific playlist --
 SELECT track.name AS track_name, playlist.name AS playlist_name
 FROM public.track track
 INNER JOIN public.playlist_track pt ON track.track_id = pt.track_id
