@@ -10,3 +10,14 @@ WHERE NOT EXISTS (
     WHERE invoice.customer_id = customer.customer_id
 );
 
+-- Select tracks that have never been sold --
+SELECT * FROM public.track track
+LEFT JOIN public.invoice_line il ON track.track_id = il.track_id
+WHERE il.track_id IS NULL;
+
+-- Select tracks that have never been sold using NOT EXISTS --
+SELECT * FROM public.track track
+WHERE NOT EXISTS (
+    SELECT 1 FROM public.invoice_line il 
+    WHERE il.track_id = track.track_id
+);
