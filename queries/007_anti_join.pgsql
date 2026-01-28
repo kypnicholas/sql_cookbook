@@ -1,3 +1,11 @@
+-- Definition: an anti-join returns rows from the left table that have NO
+-- matching rows in the right table. Common SQL expressions that implement
+-- anti-joins are `NOT EXISTS` (recommended) and `LEFT JOIN ... WHERE right IS NULL`.
+--
+-- Common SQL forms:
+---- NOT EXISTS (recommended)
+---- LEFT JOIN .. IS NULL (anti-join equivalent)
+
 -- Select customers without invoices --
 SELECT * FROM public.customer customer 
 LEFT JOIN public.invoice invoice ON customer.customer_id = invoice.customer_id
