@@ -38,23 +38,23 @@ A. Basic queries (fundamentals)
       - SELECT track_id, name FROM tracks WHERE track_id > :last_seen_id ORDER BY track_id LIMIT 20;
     - Show how to page by date (e.g., invoice_date) using last-seen timestamp.
     - Explain pros/cons: OFFSET cost vs keyset stability.
-- [ ] A4 — Casting, formatting, simple type conversions (queries/004_casts_formatting.sql)
+- [x] A4 — Casting, formatting, simple type conversions (queries/004_casts_formatting.sql)
   - Expected tasks:
     - Format milliseconds to minutes/seconds: milliseconds/1000.0 AS seconds.
     - Cast numeric to integer/decimal and format currency with TO_CHAR(total, 'FM$999,999.00').
     - Parse/format dates: date_trunc('month', invoice_date).
 
 B. Joins & relational queries
-- [ ] B5 — Inner / Left / Right joins (queries/005_joins_basic.sql)
+- [x] B5 — Inner / Left / Right joins (queries/005_joins_basic.sql)
   - Expected queries:
     - Inner join tracks → albums → artists to show track + album + artist.
     - LEFT JOIN from albums to tracks to show albums with zero tracks.
     - Example RIGHT JOIN (or explain equivalence using LEFT JOIN by swapping tables).
-- [ ] B6 — Many-to-many joins (playlist ↔ tracks) (queries/006_many_to_many.sql)
+- [x] B6 — Many-to-many joins (playlist ↔ tracks) (queries/006_many_to_many.sql)
   - Expected queries:
     - List tracks in a playlist (join playlist_track → tracks).
     - Tracks appearing in multiple playlists (group + HAVING COUNT(*) > 1).
-- [ ] B7 — Anti-join / NOT EXISTS / NOT IN patterns (queries/007_anti_join.sql)
+- [x] B7 — Anti-join / NOT EXISTS / NOT IN patterns (queries/007_anti_join.sql)
   - Expected queries:
     - Customers without invoices (left join + WHERE invoices IS NULL).
     - Tracks never sold (tracks not in invoice_items).
