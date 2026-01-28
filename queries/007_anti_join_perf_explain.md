@@ -13,25 +13,27 @@ WHERE il.track_id IS NULL;
 ```
 
 
+```text
 Hash Anti Join  (cost=65.40..174.53 rows=1519 width=70) (actual time=0.684..1.716 rows=1519 loops=1)
   Output: t.track_id, t.name, t.album_id, t.media_type_id, t.genre_id, t.composer, t.milliseconds, t.bytes, t.unit_price
   Hash Cond: (t.track_id = il.track_id)
   Buffers: shared hit=60
   ->  Seq Scan on public.track t  (cost=0.00..80.03 rows=3503 width=70) (actual time=0.016..0.331 rows=3503 loops=1)
-        Output: t.track_id, t.name, t.album_id, t.media_type_id, t.genre_id, t.composer, t.milliseconds, t.bytes, t.unit_price
-        Buffers: shared hit=45
+    Output: t.track_id, t.name, t.album_id, t.media_type_id, t.genre_id, t.composer, t.milliseconds, t.bytes, t.unit_price
+    Buffers: shared hit=45
   ->  Hash  (cost=37.40..37.40 rows=2240 width=4) (actual time=0.646..0.647 rows=2240 loops=1)
-        Output: il.track_id
-        Buckets: 4096  Batches: 1  Memory Usage: 111kB
-        Buffers: shared hit=15
-        ->  Seq Scan on public.invoice_line il  (cost=0.00..37.40 rows=2240 width=4) (actual time=0.011..0.265 rows=2240 loops=1)
-              Output: il.track_id
-              Buffers: shared hit=15
+    Output: il.track_id
+    Buckets: 4096  Batches: 1  Memory Usage: 111kB
+    Buffers: shared hit=15
+    ->  Seq Scan on public.invoice_line il  (cost=0.00..37.40 rows=2240 width=4) (actual time=0.011..0.265 rows=2240 loops=1)
+      Output: il.track_id
+      Buffers: shared hit=15
 Query Identifier: -5238514743289128790
 Planning:
   Buffers: shared hit=291
 Planning Time: 0.864 ms
 Execution Time: 1.821 ms
+```
 
 
 **Quick interpretation**
