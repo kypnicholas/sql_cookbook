@@ -13,7 +13,7 @@ WHERE EXISTS (
     JOIN public.track track ON album.album_id = track.album_id
     JOIN public.invoice_line il ON track.track_id = il.track_id
     WHERE album.artist_id = artist.artist_id
-)
+);
 
 -- Select the tracks that belong at least in one playlist --
 -- PROBLEM: this query returns duplicate track rows if a track appears in multiple playlists --
