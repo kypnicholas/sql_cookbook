@@ -1,4 +1,3 @@
-
 -- Example query using JOINs to retrieve track names along with their album titles and artist names--
 SELECT track.name,album.title,artist.name
  from public.track track

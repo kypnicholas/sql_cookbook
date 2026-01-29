@@ -14,3 +14,16 @@ LEFT JOIN public.invoice invoice ON customer.customer_id = invoice.customer_id
 GROUP BY customer.country
 ORDER BY total_orders DESC
 LIMIT 10;
+
+-- Genres with revenue > 1000USD --
+SELECT genre.name AS genre_name, 
+    SUM(invoice.total) AS genre_revenue,
+    to_char(SUM(invoice.total), 'FM$999,999,999.00') AS genre_revenue_usd
+FROM public.genre genre
+LEFT JOIN public.track track ON genre.genre_id = track.genre_id
+LEFT JOIN public.invoice_line il ON track.track_id = il.track_id
+LEFT JOIN public.invoice invoice ON il.invoice_id = invoice.invoice_id
+GROUP BY genre.name
+HAVING SUM(invoice.total) > 1000
+ORDER BY genre_revenue DESC
+LIMIT 10;
