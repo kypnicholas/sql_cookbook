@@ -59,13 +59,13 @@ B. Joins & relational queries
     - Customers without invoices (left join + WHERE invoices IS NULL).
     - Tracks never sold (tracks not in invoice_items).
     - Compare NOT EXISTS vs LEFT JOIN anti-join performance notes.
-- [ ] B8 — Semi-join (EXISTS) patterns (queries/008_semi_join.sql)
+- [x] B8 — Semi-join (EXISTS) patterns (queries/008_semi_join.sql)
   - Expected queries:
     - Artists who have at least one track sold (EXISTS(SELECT 1 FROM ...)).
     - Use EXISTS for correlated existence checks vs joins that cause duplication.
 
 C. Aggregation & grouping analysis
-- [ ] C9 — GROUP BY & HAVING basics (queries/009_group_by.sql)
+- [x] C9 — GROUP BY & HAVING basics (queries/009_group_by.sql)
   - Expected queries:
     - Revenue per customer: SUM(invoices.total) grouped by customer.
     - Orders per country: COUNT(*) grouped by billing_country.
