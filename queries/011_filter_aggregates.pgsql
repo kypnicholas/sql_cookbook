@@ -17,3 +17,12 @@ SELECT
     SUM(total) FILTER (WHERE billing_country = 'USA') AS usa_revenue,
     SUM(total) FILTER (WHERE billing_country = 'Canada') AS canada_revenue
 FROM public.invoice;
+
+-- Conditional example with COUNT and FILTER:
+SELECT 
+    COUNT(*) AS total_invoices,
+    COUNT(*) FILTER (WHERE invoice.total > 50) AS high_value_invoices,
+    COUNT(*) FILTER (WHERE invoice.total <= 50) AS low_value_invoices
+FROM public.invoice invoice;
+
+
