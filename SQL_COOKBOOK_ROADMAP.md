@@ -18,7 +18,7 @@ Recommended priority
 
 Detailed checklist with expected queries / activities
 
-A. Basic queries (fundamentals)
+A. Basic queries (fundamentals) ✅
 - [x] A1 — Simple SELECTs & filters (queries/001_select_filters.sql)
   - Expected tasks:
     - Select specific columns: customers email + country.
@@ -44,7 +44,7 @@ A. Basic queries (fundamentals)
     - Cast numeric to integer/decimal and format currency with TO_CHAR(total, 'FM$999,999.00').
     - Parse/format dates: date_trunc('month', invoice_date).
 
-B. Joins & relational queries
+B. Joins & relational queries ✅
 - [x] B5 — Inner / Left / Right joins (queries/005_joins_basic.sql)
   - Expected queries:
     - Inner join tracks → albums → artists to show track + album + artist.
@@ -64,7 +64,7 @@ B. Joins & relational queries
     - Artists who have at least one track sold (EXISTS(SELECT 1 FROM ...)).
     - Use EXISTS for correlated existence checks vs joins that cause duplication.
 
-C. Aggregation & grouping analysis
+C. Aggregation & grouping analysis ⚠️ (partial)
 - [x] C9 — GROUP BY & HAVING basics (queries/009_group_by.sql)
   - Expected queries:
     - Revenue per customer: SUM(invoices.total) grouped by customer.
@@ -83,7 +83,7 @@ C. Aggregation & grouping analysis
     - Use NTILE(4) over tracks ordered by unit_price to bucket by quartiles.
     - percentile_cont(0.5) WITHIN GROUP (ORDER BY unit_price) for median unit_price.
 
-D. Window functions & analytics
+D. Window functions & analytics ⏳ (not started)
 - [ ] D13 — ROW_NUMBER / RANK / DENSE_RANK examples (queries/013_rank_window.sql)
   - Expected queries:
     - Top track per genre using ROW_NUMBER() PARTITION BY genre ORDER BY times_sold DESC.
@@ -101,7 +101,7 @@ D. Window functions & analytics
     - Compute PERCENT_RANK of customers by total_spent to identify top percentiles.
     - CUME_DIST for cumulative distribution across tracks by unit_price.
 
-E. CTEs, recursive queries & advanced logic
+E. CTEs, recursive queries & advanced logic ⏳ (not started)
 - [ ] E17 — Simple CTEs for staging/clarity (queries/017_cte_staging.sql)
   - Expected activities:
     - Rewrite a multi-join aggregation as one or more CTEs (staging -> aggregation).
@@ -115,7 +115,7 @@ E. CTEs, recursive queries & advanced logic
     - Pivot monthly revenue into columns for a small range of months (use FILTER or crosstab extension).
     - If crosstab not available, show manual pivot with SUM(...) FILTER (WHERE date_trunc('month', invoice_date) = '2024-01-01').
 
-F. Data transformation & cleaning
+F. Data transformation & cleaning ⏳ (not started)
 - [ ] F20 — Deduplication patterns (DISTINCT ON / window-based) (queries/020_dedup.sql)
   - Expected queries:
     - Find duplicate customers by (first_name, last_name, email) and show canonical pick using ROW_NUMBER().
@@ -129,7 +129,7 @@ F. Data transformation & cleaning
     - Recompute customers.total_spent from invoices and update table with COALESCE sums.
     - Example: UPDATE customers SET total_spent = COALESCE((SELECT SUM(total) FROM invoices WHERE customer_id = customers.customer_id),0);
 
-G. Indexing & performance tuning (DBA)
+G. Indexing & performance tuning (DBA) ⏳ (not started)
 - [ ] G23 — Create targeted indexes & benchmark (migrations/023_create_indexes.sql + analysis/023_index_benchmark.md)
   - Expected tasks:
     - Create an index on invoices(invoice_date) and/or invoice_items(track_id).
@@ -147,7 +147,7 @@ G. Indexing & performance tuning (DBA)
     - Create an index on (date_trunc('month', invoice_date)) or on an expression used frequently.
     - Show how to query to take advantage of the functional index.
 
-H. EXPLAIN, profiling & before/after comparisons
+H. EXPLAIN, profiling & before/after comparisons ⏳ (not started)
 - [ ] H27 — EXPLAIN ANALYZE: save plan and annotate (analysis/027_explain_before.sql / _after.sql / .md)
   - Expected activities:
     - Pick one slow-ish query (e.g., top tracks by sales join) and run EXPLAIN ANALYZE.
@@ -160,7 +160,7 @@ H. EXPLAIN, profiling & before/after comparisons
   - Expected tasks:
     - Re-express a correlated subquery as a JOIN (or vice versa) and compare plans.
 
-I. Materialized views, caching & pre-aggregation
+I. Materialized views, caching & pre-aggregation ⏳ (not started)
 - [ ] I30 — Materialized view for top-selling tracks (migrations/030_mv_top_tracks.sql + queries/030_query_mv.sql)
   - Expected tasks:
     - CREATE MATERIALIZED VIEW mv_top_tracks AS ... and demonstrate REFRESH MATERIALIZED VIEW CONCURRENTLY and query.
@@ -169,7 +169,7 @@ I. Materialized views, caching & pre-aggregation
   - Expected activities:
     - Document when to refresh (schedule, event-driven), cost/latency tradeoffs, and sample SQL to refresh only recent partitions if you partition the base table.
 
-J. Transactions, concurrency & safe migrations
+J. Transactions, concurrency & safe migrations ⏳ (not started)
 - [ ] J32 — Safe multi-step migrations (add column, backfill, swap) (migrations/032_safe_column_add.sql & docs/032_safe_migration.md)
   - Expected tasks:
     - Implement 3-step pattern: add nullable column, backfill in batches, set NOT NULL and drop old column.
@@ -182,7 +182,7 @@ J. Transactions, concurrency & safe migrations
   - Expected tasks:
     - Provide example of pg_advisory_lock usage to coordinate migrations or maintenance.
 
-K. Schema design, normalization & refactoring
+K. Schema design, normalization & refactoring ⏳ (not started)
 - [ ] K35 — ER diagram and normalization/denormalization trade-offs (docs/035_er_diagram.svg + docs/035_tradeoffs.md)
   - Expected tasks:
     - Produce a small ER diagram (draw.io export) and write 1 paragraph about normalization level and any denormalization choices for analytics.
@@ -191,7 +191,7 @@ K. Schema design, normalization & refactoring
     - Document a plan to partition invoices by year/month; include example CREATE TABLE ... PARTITION BY RANGE and an example of inserting to partition.
     - If Supabase does not allow partition DDL in your plan, include the example as documentation and local test script.
 
-L. Security, roles & row-level policies
+L. Security, roles & row-level policies ⏳ (not started)
 - [ ] L37 — Roles and GRANT examples (migrations/037_roles_and_grants.sql)
   - Expected tasks:
     - Create a reporting_role with SELECT privileges on reporting tables and show GRANT statements.
@@ -199,7 +199,7 @@ L. Security, roles & row-level policies
   - Expected activities:
     - Create a tenant_id example column and a simple RLS policy for tenant isolation; demonstrate session with set_config('app.tenant', 't1', false) or explain how to set current_user-based policy.
 
-M. Backup, restore & migration exercises (CI/CD)
+M. Backup, restore & migration exercises (CI/CD) ⏳ (not started)
 - [ ] M39 — Backup & restore with pg_dump / pg_restore (scripts/039_backup_restore.sh + docs/039_backup_instructions.md)
   - Expected tasks:
     - Provide commands for schema-only dump and full dump, restore into a fresh DB, and verify object counts.
@@ -207,7 +207,7 @@ M. Backup, restore & migration exercises (CI/CD)
   - Expected activities:
     - Ensure `pr-check.yml` runs migrations and tests; add at least one test that asserts a critical table exists and has rows.
 
-N. Monitoring, observability & health checks
+N. Monitoring, observability & health checks ⏳ (not started)
 - [ ] N41 — Health check queries (pg_stat_activity, table stats) (scripts/041_health_checks.sql + docs/041_monitoring.md)
   - Expected queries:
     - SELECT count(*) FROM pg_stat_activity WHERE state = 'active';
@@ -216,7 +216,7 @@ N. Monitoring, observability & health checks
   - Expected activities:
     - Create a scheduled workflow that runs a simple SELECT 1 or SELECT count(*) FROM customers and fails if slow (> X seconds).
 
-O. Extensions & advanced Postgres features (if available)
+O. Extensions & advanced Postgres features (if available) ⏳ (not started)
 - [ ] O43 — Full-text search demo (migrations/043_fulltext.sql + queries/043_fulltext_queries.sql)
   - Expected tasks:
     - Create a tsvector column for tracks (name || ' ' || composer) and an index: CREATE INDEX ON tracks USING GIN (to_tsvector('english', name || ' ' || composer)).
@@ -228,7 +228,7 @@ O. Extensions & advanced Postgres features (if available)
   - Expected activities:
     - Document how you would use PostGIS for geo-joins if you extended dataset (not required for Chinook).
 
-P. Stored procedures / triggers / auditing
+P. Stored procedures / triggers / auditing ⏳ (not started)
 - [ ] P46 — Audit trigger for invoice changes (migrations/046_audit_trigger.sql + queries/046_audit_queries.sql)
   - Expected tasks:
     - Create invoice_audit table and trigger function that logs INSERT/UPDATE/DELETE with old/new JSONB.
@@ -238,13 +238,13 @@ P. Stored procedures / triggers / auditing
     - Write a plpgsql function create_invoice(customer_id, items jsonb) that inserts into invoices and invoice_items in a transaction.
     - Add a test that calls the function and asserts invoice + items exist and totals match.
 
-Q. Concurrency, load & capacity planning (conceptual + practical)
+Q. Concurrency, load & capacity planning (conceptual + practical) ⏳ (not started)
 - [ ] Q48 — Load test simulation and analysis (scripts/048_load_test.sh + analysis/048_load_results.md)
   - Expected tasks:
     - Use a simple script or pgbench-like loop to simulate many SELECTs or INSERTs and record response times.
     - Document observed behavior and recommendations (indexes, connection pooling).
 
-R. Data lineage, documentation & tests
+R. Data lineage, documentation & tests ⏳ (not started)
 - [ ] R49 — Document each query (queries/README.md: intent, tags, complexity)
   - Expected activities:
     - Add a `queries/README.md` with a one-line description and tags (beginner/advanced/window/indexing) for each query file.
@@ -252,7 +252,7 @@ R. Data lineage, documentation & tests
   - Expected tasks:
     - Add tests that assert customers.total_spent >= 0, invoices table has > 0 rows, mv_top_tracks exists after refresh, etc.
 
-Optional extras / polish
+Optional extras / polish ⏳ (not started)
 - [ ] Add screenshots or 60–90s demo video for 3 highlight items (artifacts/videos/)
 - [ ] Provide a "Try this" quickstart on your portfolio linking to saved Supabase SQL snippets or db-fiddle examples
 - [ ] Add a "Cheat sheet" page summarizing common idioms (joins, window functions, CTEs) (docs/CHEATSHEET.md)
