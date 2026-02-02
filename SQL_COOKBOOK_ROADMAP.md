@@ -70,11 +70,11 @@ C. Aggregation & grouping analysis
     - Revenue per customer: SUM(invoices.total) grouped by customer.
     - Orders per country: COUNT(*) grouped by billing_country.
     - HAVING example: genres with revenue > X.
-- [ ] C10 — ROLLUP / GROUPING SETS / CUBE examples (queries/010_grouping_sets.sql)
+- [x] C10 — ROLLUP / GROUPING SETS / CUBE examples (queries/010_grouping_sets.sql)
   - Expected queries:
     - Monthly revenue by country + subtotals using GROUPING SETS or ROLLUP.
     - Demonstrate how grouping sets produce multi-level aggregates in one pass.
-- [ ] C11 — FILTERed aggregates (Postgres) (queries/011_filter_aggregates.sql)
+- [x] C11 — FILTERed aggregates (Postgres) (queries/011_filter_aggregates.sql)
   - Expected queries:
     - SUM(amount) FILTER (WHERE billing_country = 'USA') AS usa_revenue.
     - Conditional counts: COUNT(*) FILTER (WHERE quantity > 1) AS multi_item_sales.
