@@ -1,7 +1,11 @@
 
--- Top track per genre using RANK()
--- RANK() assigns the same rank to ties, and leaves gaps in the ranking sequence for subsequent ranks.
+-- RANK definition
+-- The RANK() window function assigns a unique, sequential integer rank to each row within a query result set partition based on the order defined in the OVER() clause. 
+-- Identical values (ties) receive the same rank, and the function skips the next ranking number(s) following a tie.
 
+-- Top track per genre using RANK()
+
+-- Steps:
 -- 1) `sales` CTE: compute total quantity sold per track (times_sold).
 -- 2) `ranked` CTE: apply `RANK()` partitioned by genre ordered by times_sold.
 -- 3) final SELECT: filter to `genre_rank = 1` to return top track(s) per genre.
@@ -32,8 +36,3 @@ FROM ranked
 WHERE genre_rank = 1
 ORDER BY genre;
 
--- Notes:
--- - `RANK()` returns ties (multiple tracks with the same top `times_sold`).
--- - If you want exactly one track per genre, use `ROW_NUMBER()` instead.
--- - `LIMIT` is not used here because it would cap the whole result set, not per-genre.
--- - PostgreSQL alternatives: `DISTINCT ON (genre)` or a `LATERAL ... LIMIT 1` per genre.
