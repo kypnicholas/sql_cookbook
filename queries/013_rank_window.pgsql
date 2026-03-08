@@ -71,3 +71,36 @@ FROM ranked
 WHERE genre_rank = 1
 ORDER BY genre;
 
+
+
+-- Top track per genre using ROW_NUMBER()
+-- ROW_NUMBER definition
+-- The ROW_NUMBER() window function assigns a unique sequential integer to each row within a query result set partition, without regard to ties.
+-- Steps are the same as above, but we use ROW_NUMBER() instead of RANK().
+
+WITH sales AS (
+    SELECT
+        genre.name AS genre,
+        track.name AS track_name,
+        artist.name AS artist,
+        SUM(il.quantity) AS times_sold
+    FROM invoice
+    JOIN invoice_line il ON invoice.invoice_id = il.invoice_id
+    JOIN track track ON il.track_id = track.track_id
+    LEFT JOIN genre genre ON track.genre_id = genre.genre_id
+    LEFT JOIN album album ON track.album_id = album.album_id
+    LEFT JOIN artist artist ON album.artist_id = artist.artist_id
+    GROUP BY genre.name, track.name, artist.name
+), ranked AS (
+    SELECT
+        genre,
+        track_name,
+        artist,
+        times_sold,
+        ROW_NUMBER() OVER (PARTITION BY genre ORDER BY times_sold DESC) AS genre_rank
+    FROM sales
+)
+SELECT genre, track_name, artist, times_sold
+FROM ranked
+WHERE genre_rank = 1
+ORDER BY genre;
