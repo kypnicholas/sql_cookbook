@@ -1,4 +1,4 @@
--- Top track per genre using RANK()
+-- Top-selling track per genre using RANK()
 
 -- RANK definition
 -- The RANK() window function assigns a unique, sequential integer rank to each row within a query result set partition based on the order defined in the OVER() clause. 
@@ -6,9 +6,12 @@
 
 
 -- Steps:
--- 1) `sales` CTE: compute total quantity sold per track (times_sold).
--- 2) `ranked` CTE: apply `RANK()` partitioned by genre ordered by times_sold.
--- 3) final SELECT: filter to `genre_rank = 1` to return top track(s) per genre.
+-- 1) `sales` CTE: compute total sales per track (times_sold).
+-- 2) `ranked` CTE: assigns a rank (genre_rank) to each track within its genre, ordered by times_sold descending.
+-- 3) final SELECT: filter to `genre_rank = 1` to return highest-selling track(s) per genre.
+
+-- NOTE: WITH clause is used to define Common Table Expressions (CTEs). 
+-- When added to the start of a query, it allows you to create temporary result sets that can be referenced within the main query. CTEs improve readability and organization of complex queries.
 
 WITH sales AS (
 	SELECT
@@ -38,7 +41,7 @@ ORDER BY genre;
 
 
 
--- Top track per genre using DENSE_RANK()
+-- Top-selling track per genre using DENSE_RANK()
 
 -- DENSE_RANK definition
 -- The DENSE_RANK() window function is similar to RANK(), but it does not skip ranking numbers when there are ties.
@@ -73,7 +76,7 @@ ORDER BY genre;
 
 
 
--- Top track per genre using ROW_NUMBER()
+-- Top-selling track per genre using ROW_NUMBER()
 -- ROW_NUMBER definition
 -- The ROW_NUMBER() window function assigns a unique sequential integer to each row within a query result set partition, without regard to ties.
 -- Steps are the same as above, but we use ROW_NUMBER() instead of RANK().
