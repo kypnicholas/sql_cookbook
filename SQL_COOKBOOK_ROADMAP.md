@@ -84,7 +84,7 @@ C. Aggregation & grouping analysis ✅
     - percentile_cont(0.5) WITHIN GROUP (ORDER BY unit_price) for median unit_price.
 
 D. Window functions & analytics ⏳ (in progress)
-- [ ] D13 — ROW_NUMBER / RANK / DENSE_RANK examples (queries/013_rank_window.sql)
+- [x] D13 — ROW_NUMBER / RANK / DENSE_RANK examples (queries/013_rank_window.sql)
   - Expected queries:
     - Top track per genre using ROW_NUMBER() PARTITION BY genre ORDER BY times_sold DESC.
     - Tie-aware ranking with RANK() and DENSE_RANK().
