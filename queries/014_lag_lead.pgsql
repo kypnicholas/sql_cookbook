@@ -21,3 +21,13 @@ ORDER BY customer_id, invoice_date;
 -- LEAD definition
 -- The LEAD() window function allows you to access data from a subsequent row in the same result set without the need for a self-join. 
 -- It is often used to compare values between rows or to calculate differences over time.
+
+
+SELECT
+    customer_id,
+    invoice_id,
+    invoice_date,
+    LEAD(invoice_date) OVER (PARTITION BY customer_id ORDER BY invoice_date) AS next_invoice_date,
+    EXTRACT(DAY FROM (LEAD(invoice_date) OVER (PARTITION BY customer_id ORDER BY invoice_date) - invoice_date)) AS days_until_next_invoice
+FROM invoice
+ORDER BY customer_id, invoice_date;
