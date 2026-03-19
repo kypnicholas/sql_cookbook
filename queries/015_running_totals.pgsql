@@ -10,3 +10,11 @@
 
 
 
+
+-- 7-day rolling revenue using RANGE or ROWS BETWEEN.
+
+-- Rolling total definition
+-- A rolling total, also known as a moving sum, is a calculation that provides the sum of a specified number of consecutive data points in a dataset. 
+-- You can calculate a rolling total using the SUM() window function combined with an appropriate OVER() clause that defines the range of rows to include in the calculation, 
+-- such as ROWS BETWEEN or RANGE BETWEEN.
+
