@@ -6,8 +6,14 @@
 -- A running total, also known as a cumulative sum, is a sequence of partial sums of a given data set. 
 -- You can calculate a running total using the SUM() window function combined with an appropriate OVER() clause to define the partitioning and ordering of the data.
 
-
-
+SELECT
+    customer_id,
+    invoice_id,
+    invoice_date,
+    total,
+    SUM(total) OVER (PARTITION BY customer_id ORDER BY invoice_date) AS running_total
+FROM invoice
+ORDER BY customer_id, invoice_date;
 
 
 
