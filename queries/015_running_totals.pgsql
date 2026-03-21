@@ -28,3 +28,21 @@ SELECT
     SUM(total) OVER (ORDER BY invoice_date RANGE BETWEEN INTERVAL '6 days' PRECEDING AND CURRENT ROW) AS rolling_7_day_revenue
 FROM invoice
 ORDER BY invoice_date;
+
+
+
+-- Example query that will show, for each invoice, exactly which rows are included in its 7-day rolling sum window. 
+-- This uses a lateral join (CROSS JOIN LATERAL) for debugging:
+SELECT
+    i.invoice_date,
+    i.total,
+    SUM(w.total) AS rolling_7_day_revenue,
+    ARRAY_AGG(w.invoice_date) AS included_dates
+FROM invoice i
+CROSS JOIN LATERAL (
+    SELECT total, invoice_date
+    FROM invoice
+    WHERE invoice_date BETWEEN i.invoice_date - INTERVAL '6 days' AND i.invoice_date
+) w
+GROUP BY i.invoice_date, i.total
+ORDER BY i.invoice_date;
