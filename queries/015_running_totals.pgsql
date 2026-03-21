@@ -1,5 +1,3 @@
-
-
 -- Running total of customer spend: SUM(total) OVER (PARTITION BY customer_id ORDER BY invoice_date).
 
 -- Running total definition
@@ -24,3 +22,9 @@ ORDER BY customer_id, invoice_date;
 -- You can calculate a rolling total using the SUM() window function combined with an appropriate OVER() clause that defines the range of rows to include in the calculation, 
 -- such as ROWS BETWEEN or RANGE BETWEEN.
 
+SELECT
+    invoice_date,
+    total,
+    SUM(total) OVER (ORDER BY invoice_date RANGE BETWEEN INTERVAL '6 days' PRECEDING AND CURRENT ROW) AS rolling_7_day_revenue
+FROM invoice
+ORDER BY invoice_date;
