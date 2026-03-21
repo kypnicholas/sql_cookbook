@@ -33,6 +33,11 @@ ORDER BY invoice_date;
 
 -- Example query that will show, for each invoice, exactly which rows are included in its 7-day rolling sum window. 
 -- This uses a lateral join (CROSS JOIN LATERAL) for debugging:
+
+-- CROSS JOIN LATERAL definition
+-- A CROSS JOIN LATERAL allows you to join each row from the left table with a set of rows returned by a subquery that can reference columns from the left table. 
+-- It is often used to perform calculations that depend on the current row's values, such as calculating a rolling total or performing a lookup based on the current row's data.
+
 SELECT
     i.invoice_date,
     i.total,
