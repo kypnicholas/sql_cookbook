@@ -88,7 +88,7 @@ D. Window functions & analytics ⏳ (in progress)
   - Expected queries:
     - Top track per genre using ROW_NUMBER() PARTITION BY genre ORDER BY times_sold DESC.
     - Tie-aware ranking with RANK() and DENSE_RANK().
-- [ ] D14 — LAG / LEAD (inter-event differences) (queries/014_lag_lead.sql)
+- [x] D14 — LAG / LEAD (inter-event differences) (queries/014_lag_lead.sql)
   - Expected queries:
     - For each customer, compute days between consecutive invoices: invoice_date - LAG(invoice_date).
     - Use LEAD to peek next invoice per customer.
