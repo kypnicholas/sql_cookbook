@@ -92,7 +92,7 @@ D. Window functions & analytics ⏳ (in progress)
   - Expected queries:
     - For each customer, compute days between consecutive invoices: invoice_date - LAG(invoice_date).
     - Use LEAD to peek next invoice per customer.
-- [ ] D15 — Running totals & moving averages (queries/015_running_totals.sql)
+- [x] D15 — Running totals & moving averages (queries/015_running_totals.sql)
   - Expected queries:
     - Running total of customer spend: SUM(total) OVER (PARTITION BY customer_id ORDER BY invoice_date).
     - 7-day rolling revenue using RANGE or ROWS BETWEEN.
