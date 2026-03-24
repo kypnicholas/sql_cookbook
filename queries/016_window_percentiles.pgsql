@@ -3,7 +3,12 @@
 -- The PERCENT_RANK() window function calculates the relative rank of a row within a partition of a result set, expressed as a percentage. 
 -- It is often used to determine the position of a value within a sorted list of values, such as finding the percentile rank of a value in a dataset.
 
-
+SELECT
+    customer_id,
+    total,
+    PERCENT_RANK() OVER (PARTITION BY customer_id ORDER BY total) AS percent_rank
+FROM invoice
+ORDER BY customer_id, total;
 
 
 
