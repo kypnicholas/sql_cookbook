@@ -9,12 +9,33 @@ Definition of Done (for each checkbox)
 3. Short explanation (1–3 lines) added either at top of the SQL file or in `queries/README.md`.
 4. If applicable, add a small test under `tests/` that verifies the query runs or returns expected structure/row count; CI passes.
 
-Recommended priority
-1. Basics & Joins: A1–A4, B5–B8
-2. Aggregations & Window Functions: C9–C12, D13–D16
-3. Indexing & EXPLAIN: G23, H27
-4. Materialized views & triggers: I30, P46
-5. Add tests & CI to validate (R50, M40)
+
+---
+**Legend: Main Topics & Progress**
+
+| Section | Topic                                      | Status        |
+|---------|--------------------------------------------|---------------|
+| A       | Basic queries (fundamentals)               | ✅ Complete   |
+| B       | Joins & relational queries                 | ✅ Complete   |
+| C       | Aggregation & grouping analysis            | ✅ Complete   |
+| D       | Window functions & analytics               | ✅ Complete   |
+| E       | CTEs, recursive queries & advanced logic   | ⏳ In progress|
+| F       | Data transformation & cleaning             | ❌ Not started|
+| G       | Indexing & performance tuning (DBA)        | ❌ Not started|
+| H       | EXPLAIN, profiling & comparisons           | ❌ Not started|
+| I       | Materialized views, caching & pre-agg      | ❌ Not started|
+| J       | Transactions, concurrency & migrations     | ❌ Not started|
+| K       | Schema design, normalization & refactoring | ❌ Not started|
+| L       | Security, roles & row-level policies       | ❌ Not started|
+| M       | Backup, restore & migration exercises      | ❌ Not started|
+| N       | Monitoring, observability & health checks  | ❌ Not started|
+| O       | Extensions & advanced Postgres features    | ❌ Not started|
+| P       | Stored procedures / triggers / auditing    | ❌ Not started|
+| Q       | Concurrency, load & capacity planning      | ❌ Not started|
+| R       | Data lineage, documentation & tests        | ❌ Not started|
+| —       | Optional extras / polish                   | ❌ Not started|
+
+---
 
 Detailed checklist with expected queries / activities
 
