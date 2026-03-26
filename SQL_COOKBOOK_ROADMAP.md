@@ -83,7 +83,7 @@ C. Aggregation & grouping analysis ✅
     - Use NTILE(4) over tracks ordered by unit_price to bucket by quartiles.
     - percentile_cont(0.5) WITHIN GROUP (ORDER BY unit_price) for median unit_price.
 
-D. Window functions & analytics ⏳ (in progress)
+D. Window functions & analytics ✅
 - [x] D13 — ROW_NUMBER / RANK / DENSE_RANK examples (queries/013_rank_window.sql)
   - Expected queries:
     - Top track per genre using ROW_NUMBER() PARTITION BY genre ORDER BY times_sold DESC.
@@ -101,7 +101,7 @@ D. Window functions & analytics ⏳ (in progress)
     - Compute PERCENT_RANK of customers by total_spent to identify top percentiles.
     - CUME_DIST for cumulative distribution across tracks by unit_price.
 
-E. CTEs, recursive queries & advanced logic ❌ (not started)
+E. CTEs, recursive queries & advanced logic ⏳ (in progress)
 - [ ] E17 — Simple CTEs for staging/clarity (queries/017_cte_staging.sql)
   - Expected activities:
     - Rewrite a multi-join aggregation as one or more CTEs (staging -> aggregation).
