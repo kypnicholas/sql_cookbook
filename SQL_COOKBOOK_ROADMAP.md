@@ -96,7 +96,7 @@ D. Window functions & analytics ⏳ (in progress)
   - Expected queries:
     - Running total of customer spend: SUM(total) OVER (PARTITION BY customer_id ORDER BY invoice_date).
     - 7-day rolling revenue using RANGE or ROWS BETWEEN.
-- [ ] D16 — Windowed percentiles / cume_dist / percent_rank (queries/016_window_percentiles.sql)
+- [x] D16 — Windowed percentiles / cume_dist / percent_rank (queries/016_window_percentiles.sql)
   - Expected queries:
     - Compute PERCENT_RANK of customers by total_spent to identify top percentiles.
     - CUME_DIST for cumulative distribution across tracks by unit_price.
