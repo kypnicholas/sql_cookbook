@@ -1,7 +1,7 @@
 # SQL Cookbook — Workplan & Detailed Tasks
 
 Purpose
-- An actionable checklist for the Chinook "SQL Cookbook". Each section contains the high-level task, then a concrete list of specific queries or activities you should implement so you know exactly what to build and commit.
+- An actionable checklist for the Chinook Dataset "SQL Cookbook". Each section contains the high-level task, then a list of specific queries or activities to implement.
 
 Definition of Done (for each checkbox)
 1. SQL file(s) added under the suggested path (e.g., `queries/###_name.sql` or `migrations/###_name.sql`).
