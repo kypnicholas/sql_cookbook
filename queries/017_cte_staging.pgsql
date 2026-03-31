@@ -26,15 +26,16 @@ WITH TrackArtist AS (
 ArtistSales AS (
     SELECT
         trackartist.artist_id,
+        trackartist.artist_name,
         SUM(il.unit_price * il.quantity) AS total_sales
     FROM TrackArtist trackartist
     JOIN invoice_line il ON trackartist.track_id = il.track_id
-    GROUP BY trackartist.artist_id
+    GROUP BY trackartist.artist_id, trackartist.artist_name
 )
 SELECT
-    artistsales.artist_id,
-    trackartist.artist_name,
-    artistsales.total_sales
-FROM ArtistSales artistsales
-JOIN TrackArtist trackartist ON artistsales.artist_id = trackartist.artist_id; 
+    artist_id,
+    artist_name,
+    total_sales
+FROM ArtistSales
+ORDER BY total_sales DESC;
 
