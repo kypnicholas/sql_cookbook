@@ -14,6 +14,10 @@
 --   2. Second CTE: Aggregate sales (SUM(invoice_items.unit_price * invoice_items.quantity)) per artist.
 --   3. Final SELECT: Join the CTEs to produce the final result.
 
+-- NOTES:
+-- The first CTE is a Standalone CTE 
+-- The second CTE is a Dependent/ Nested CTE that references the first CTE. 
+
 WITH TrackArtist AS (
     SELECT
         t.track_id,
