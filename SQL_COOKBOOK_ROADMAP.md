@@ -123,141 +123,181 @@ D. Window functions & analytics ✅
     - CUME_DIST for cumulative distribution across tracks by unit_price.
 
 E. CTEs, recursive queries & advanced logic ⏳ (in progress)
+
 - [ ] E17 — Simple CTEs for staging/clarity (queries/017_cte_staging.sql)
-  - Expected activities:
-    - Rewrite a multi-join aggregation as one or more CTEs (staging -> aggregation).
-    - Use WITH to compute sub-aggregates and then join them.
+  - Identify an existing query (e.g., total sales per artist joining tracks, albums, invoice_items) that uses multiple joins and aggregations.
+  - Rewrite this query using at least two CTEs:
+    - First CTE: Stage a join between tracks, albums, and artists.
+    - Second CTE: Aggregate sales (SUM(invoice_items.unit_price * invoice_items.quantity)) per artist.
+    - Final SELECT: Join the CTEs to produce the final result.
+  - Add a comment explaining why CTEs improve clarity or maintainability.
+
 - [ ] E18 — Recursive CTE: employee manager chain (queries/018_recursive_cte.sql)
-  - Expected queries:
-    - Use WITH RECURSIVE to expand reports_to chain from a given employee up to top manager.
-    - Show path length and level. Provide output example.
+  - Write a query using WITH RECURSIVE to list the management chain for a given employee (start with an employee_id).
+  - Output should include: employee_id, manager_id, level (distance from top), and a concatenated path of names.
+  - Provide an example result for one employee.
+
 - [ ] E19 — Pivoting / crosstab (or FILTER-based pivot) (queries/019_pivot.sql)
-  - Expected tasks:
-    - Pivot monthly revenue into columns for a small range of months (use FILTER or crosstab extension).
-    - If crosstab not available, show manual pivot with SUM(...) FILTER (WHERE date_trunc('month', invoice_date) = '2024-01-01').
+  - Use the crosstab extension (if available) to pivot monthly revenue into columns for at least three months.
+  - If crosstab is not available, use SUM(...) FILTER (WHERE ...) to manually pivot revenue for three specific months into columns.
+  - Add a comment showing both approaches and when to use each.
 
 F. Data transformation & cleaning ❌ (not started)
+
 - [ ] F20 — Deduplication patterns (DISTINCT ON / window-based) (queries/020_dedup.sql)
-  - Expected queries:
-    - Find duplicate customers by (first_name, last_name, email) and show canonical pick using ROW_NUMBER().
-    - Provide cleanup example: DELETE FROM ... WHERE ctid IN (SELECT ctid FROM ... WHERE row_number > 1).
+  - Write a query to find duplicate customers based on (first_name, last_name, email).
+  - Use ROW_NUMBER() OVER (PARTITION BY first_name, last_name, email ORDER BY customer_id) to identify duplicates.
+  - Write a DELETE statement to remove duplicates, keeping only the lowest customer_id per group.
+
 - [ ] F21 — Normalization / splitting columns (migrations/021_normalize_composer.sql + queries/)
-  - Expected activities:
-    - Extract composer into composer_first and composer_last (string split) as a migration + backfill.
-    - Show SELECTs before and after normalization.
+  - Write a migration to add composer_first and composer_last columns to the tracks table.
+  - Write an UPDATE statement to split the composer field into first and last names (using SPLIT_PART or similar).
+  - Write SELECT queries to show before/after normalization.
+
 - [ ] F22 — NULL handling & coalesce fixes, update totals from invoices (queries/022_null_handling.sql)
-  - Expected queries:
-    - Recompute customers.total_spent from invoices and update table with COALESCE sums.
-    - Example: UPDATE customers SET total_spent = COALESCE((SELECT SUM(total) FROM invoices WHERE customer_id = customers.customer_id),0);
+  - Write a query to recompute customers.total_spent using COALESCE to handle NULLs.
+  - Write an UPDATE statement to set customers.total_spent to the sum of their invoices, defaulting to 0 if no invoices exist.
 
 G. Indexing & performance tuning (DBA) ❌ (not started)
+
 - [ ] G23 — Create targeted indexes & benchmark (migrations/023_create_indexes.sql + analysis/023_index_benchmark.md)
-  - Expected tasks:
-    - Create an index on invoices(invoice_date) and/or invoice_items(track_id).
-    - Measure a sample query before/after with EXPLAIN ANALYZE and record elapsed times.
+  - Create an index on invoices(invoice_date).
+  - Create an index on invoice_items(track_id).
+  - Run EXPLAIN ANALYZE on a query filtering by invoice_date before and after the index; record and compare timings.
+
 - [ ] G24 — Expression indexes (e.g., lower(email)) (migrations/024_expr_index.sql)
-  - Expected tasks/queries:
-    - Create INDEX ON LOWER(customers.email) and show case-insensitive search improvement.
-    - Provide example: SELECT * FROM customers WHERE LOWER(email) = 'alice@example.com';
+  - Create an index on LOWER(customers.email).
+  - Write a query to search for a customer by email case-insensitively and show the index is used (EXPLAIN).
+
 - [ ] G25 — Partial indexes use-case (migrations/025_partial_index.sql)
-  - Expected tasks:
-    - Create a partial index e.g., ON invoices(invoice_date) WHERE total > 100.
-    - Explain when partial indexes help and show a query that benefits.
+  - Create a partial index on invoices(invoice_date) WHERE total > 100.
+  - Write a query that benefits from this index and show the plan.
+
 - [ ] G26 — Functional/generated column index (migrations/026_functional_index.sql)
-  - Expected tasks:
-    - Create an index on (date_trunc('month', invoice_date)) or on an expression used frequently.
-    - Show how to query to take advantage of the functional index.
+  - Create an index on date_trunc('month', invoice_date).
+  - Write a query that groups by month and show the index is used.
 
 H. EXPLAIN, profiling & before/after comparisons ❌ (not started)
+
 - [ ] H27 — EXPLAIN ANALYZE: save plan and annotate (analysis/027_explain_before.sql / _after.sql / .md)
-  - Expected activities:
-    - Pick one slow-ish query (e.g., top tracks by sales join) and run EXPLAIN ANALYZE.
-    - Identify seq scan, nested loops, expensive nodes; apply an index or rewrite and re-run EXPLAIN ANALYZE.
-    - Save both plans and write a short note describing the change.
+  - Pick a slow query (e.g., top tracks by sales with joins).
+  - Run EXPLAIN ANALYZE and save the plan.
+  - Apply an optimization (e.g., add an index or rewrite the query).
+  - Run EXPLAIN ANALYZE again and save the new plan.
+  - Write a short note comparing the two plans.
+
 - [ ] H28 — Query stats (pg_stat_statements) exploration (analysis/028_pg_stat_statements.md)
-  - Expected tasks:
-    - If extension available, show top 10 queries by total_time and suggest optimizations.
+  - Query pg_stat_statements for the top 10 queries by total_time.
+  - Suggest one optimization for a slow query based on the stats.
+
 - [ ] H29 — Query rewrites and plan changes (queries/029_rewrite_for_performance.sql)
-  - Expected tasks:
-    - Re-express a correlated subquery as a JOIN (or vice versa) and compare plans.
+  - Take a correlated subquery and rewrite it as a JOIN.
+  - Take a JOIN and rewrite it as a correlated subquery.
+  - Run EXPLAIN on both and compare the plans.
 
 I. Materialized views, caching & pre-aggregation ❌ (not started)
+
 - [ ] I30 — Materialized view for top-selling tracks (migrations/030_mv_top_tracks.sql + queries/030_query_mv.sql)
-  - Expected tasks:
-    - CREATE MATERIALIZED VIEW mv_top_tracks AS ... and demonstrate REFRESH MATERIALIZED VIEW CONCURRENTLY and query.
-    - Show use-case: speed up repeated heavy aggregation.
+  - Write a CREATE MATERIALIZED VIEW statement for top-selling tracks (e.g., track_id, total_sales).
+  - Write a query to REFRESH MATERIALIZED VIEW CONCURRENTLY.
+  - Write a SELECT to query the materialized view for the top 10 tracks.
+  - Add a comment explaining the performance benefit.
+
 - [ ] I31 — Incremental refresh strategy notes (analysis/031_mv_refresh_strategy.md)
-  - Expected activities:
-    - Document when to refresh (schedule, event-driven), cost/latency tradeoffs, and sample SQL to refresh only recent partitions if you partition the base table.
+  - Document at least two strategies for refreshing materialized views (e.g., scheduled vs event-driven).
+  - Provide sample SQL to refresh only recent partitions if partitioning is used.
 
 J. Transactions, concurrency & safe migrations ❌ (not started)
+
 - [ ] J32 — Safe multi-step migrations (add column, backfill, swap) (migrations/032_safe_column_add.sql & docs/032_safe_migration.md)
-  - Expected tasks:
-    - Implement 3-step pattern: add nullable column, backfill in batches, set NOT NULL and drop old column.
-    - Provide scripts or example SQL for each step and a note about downtime risk.
+  - Write SQL to add a new nullable column to a table.
+  - Write a script to backfill the column in batches (using UPDATE with LIMIT/OFFSET or a loop).
+  - Write SQL to set the column NOT NULL and drop the old column.
+  - Document the steps and risks.
+
 - [ ] J33 — Isolation level demonstrations (tests/033_transactions_isolation.sql)
-  - Expected activities:
-    - Demonstrate phantom/read phenomena using two sessions and different isolation levels.
-    - Save simple scripts showing behavior under READ COMMITTED vs REPEATABLE READ.
+  - Write scripts to demonstrate phantom/read phenomena using two sessions and different isolation levels.
+  - Save scripts for READ COMMITTED and REPEATABLE READ, showing the difference in results.
+
 - [ ] J34 — Locking guidelines and advisory locks (docs/034_locking_guidelines.md)
-  - Expected tasks:
-    - Provide example of pg_advisory_lock usage to coordinate migrations or maintenance.
+  - Write an example using pg_advisory_lock to coordinate a migration or maintenance task.
+  - Document when and why to use advisory locks.
 
 K. Schema design, normalization & refactoring ❌ (not started)
+
 - [ ] K35 — ER diagram and normalization/denormalization trade-offs (docs/035_er_diagram.svg + docs/035_tradeoffs.md)
-  - Expected tasks:
-    - Produce a small ER diagram (draw.io export) and write 1 paragraph about normalization level and any denormalization choices for analytics.
+  - Create a small ER diagram for the Chinook schema (use draw.io or similar).
+  - Write a paragraph discussing normalization level and any denormalization choices.
+
 - [ ] K36 — Partitioning design (concept + example) (docs/036_partitioning_design.md and optional migrations/036_partition_example.sql)
-  - Expected activities:
-    - Document a plan to partition invoices by year/month; include example CREATE TABLE ... PARTITION BY RANGE and an example of inserting to partition.
-    - If Supabase does not allow partition DDL in your plan, include the example as documentation and local test script.
+  - Document a plan to partition invoices by year/month.
+  - Provide example CREATE TABLE ... PARTITION BY RANGE SQL.
+  - Write an example INSERT into a partitioned table.
 
 L. Security, roles & row-level policies ❌ (not started)
+
 - [ ] L37 — Roles and GRANT examples (migrations/037_roles_and_grants.sql)
-  - Expected tasks:
-    - Create a reporting_role with SELECT privileges on reporting tables and show GRANT statements.
+  - Write SQL to create a reporting_role.
+  - Write GRANT statements to give SELECT privileges on reporting tables to the role.
+
 - [ ] L38 — Row-level security (RLS) example (migrations/038_rls_example.sql + docs/038_rls_notes.md)
-  - Expected activities:
-    - Create a tenant_id example column and a simple RLS policy for tenant isolation; demonstrate session with set_config('app.tenant', 't1', false) or explain how to set current_user-based policy.
+  - Add a tenant_id column to a table.
+  - Write a CREATE POLICY statement for tenant isolation.
+  - Demonstrate setting the session variable and querying as a tenant.
 
 M. Backup, restore & migration exercises (CI/CD) ❌ (not started)
+
 - [ ] M39 — Backup & restore with pg_dump / pg_restore (scripts/039_backup_restore.sh + docs/039_backup_instructions.md)
-  - Expected tasks:
-    - Provide commands for schema-only dump and full dump, restore into a fresh DB, and verify object counts.
+  - Write shell commands for schema-only and full database dumps.
+  - Write commands to restore into a fresh database.
+  - Write a query to verify object counts after restore.
+
 - [ ] M40 — CI/CD: idempotent migration pipeline & tests (already scaffolded)
-  - Expected activities:
-    - Ensure `pr-check.yml` runs migrations and tests; add at least one test that asserts a critical table exists and has rows.
+  - Ensure pr-check.yml runs migrations and tests.
+  - Add a test that asserts a critical table exists and has rows.
 
 N. Monitoring, observability & health checks ❌ (not started)
+
 - [ ] N41 — Health check queries (pg_stat_activity, table stats) (scripts/041_health_checks.sql + docs/041_monitoring.md)
-  - Expected queries:
-    - SELECT count(*) FROM pg_stat_activity WHERE state = 'active';
-    - Basic table bloat / row count checks: SELECT relname, n_live_tup FROM pg_stat_user_tables;
+  - Write a query to count active connections from pg_stat_activity.
+  - Write a query to check table bloat or row counts from pg_stat_user_tables.
+
 - [ ] N42 — Scheduled GitHub Action ping / simple alert (add .github/workflows/041_db_ping.yml)
-  - Expected activities:
-    - Create a scheduled workflow that runs a simple SELECT 1 or SELECT count(*) FROM customers and fails if slow (> X seconds).
+  - Create a GitHub Actions workflow that runs a simple SELECT 1 or SELECT count(*) FROM customers.
+  - Set the workflow to fail if the query is slow or fails.
 
 O. Extensions & advanced Postgres features (if available) ❌ (not started)
+
 - [ ] O43 — Full-text search demo (migrations/043_fulltext.sql + queries/043_fulltext_queries.sql)
-  - Expected tasks:
-    - Create a tsvector column for tracks (name || ' ' || composer) and an index: CREATE INDEX ON tracks USING GIN (to_tsvector('english', name || ' ' || composer)).
-    - Queries: simple @@ search and ranking with ts_rank.
+  - Add a tsvector column to tracks and create a GIN index.
+  - Write queries using @@ and ts_rank to search and rank tracks.
+
 - [ ] O44 — JSONB metadata usage and queries (migrations/044_jsonb_example.sql + queries/044_jsonb_queries.sql)
-  - Expected tasks:
-    - Add jsonb metadata column to tracks, insert sample JSON, and query nested fields with ->> and jsonb_path_query.
+  - Add a jsonb metadata column to tracks.
+  - Insert sample JSON data.
+  - Write queries to extract nested fields and use jsonb_path_query.
+
 - [ ] O45 — PostGIS notes (if enabled) (docs/045_postgis_notes.md)
-  - Expected activities:
-    - Document how you would use PostGIS for geo-joins if you extended dataset (not required for Chinook).
+  - Document how PostGIS could be used for geo-joins if the dataset were extended.
 
 P. Stored procedures / triggers / auditing ❌ (not started)
+
 - [ ] P46 — Audit trigger for invoice changes (migrations/046_audit_trigger.sql + queries/046_audit_queries.sql)
-  - Expected tasks:
-    - Create invoice_audit table and trigger function that logs INSERT/UPDATE/DELETE with old/new JSONB.
-    - Demonstrate querying audit trail for a single invoice id.
+  - Create an invoice_audit table.
+  - Write a trigger function to log INSERT/UPDATE/DELETE with old/new JSONB.
+  - Write a query to retrieve audit logs for a specific invoice.
+
 - [ ] P47 — Stored procedure to create invoice + items (migrations/047_invoice_proc.sql + tests/047_invoice_proc_test.sql)
-  - Expected activities:
-    - Write a plpgsql function create_invoice(customer_id, items jsonb) that inserts into invoices and invoice_items in a transaction.
-    - Add a test that calls the function and asserts invoice + items exist and totals match.
+  - Write a plpgsql function create_invoice(customer_id, items jsonb) that inserts into invoices and invoice_items in a transaction.
+  - Write a test that calls the function and checks that invoice and items exist and totals match.
+
+- [ ] Q48 — Simulate concurrent inserts/updates (scripts/048_concurrency_test.sql)
+  - Write a script to simulate concurrent inserts or updates to a table.
+  - Measure and record any deadlocks or contention.
+
+- [ ] Q49 — Estimate table growth and storage needs (docs/049_capacity_planning.md)
+  - Write a query to estimate current table sizes.
+  - Project growth based on recent insert rates.
 
 Q. Concurrency, load & capacity planning (conceptual + practical) ❌ (not started)
 - [ ] Q48 — Load test simulation and analysis (scripts/048_load_test.sh + analysis/048_load_results.md)
@@ -266,6 +306,13 @@ Q. Concurrency, load & capacity planning (conceptual + practical) ❌ (not start
     - Document observed behavior and recommendations (indexes, connection pooling).
 
 R. Data lineage, documentation & tests ❌ (not started)
+
+- [ ] R50 — Document query lineage for a report (docs/050_lineage_example.md)
+  - Pick a report query and document the source tables and transformations.
+  - Draw a simple lineage diagram.
+
+- [ ] R51 — Add tests for critical queries (tests/051_query_tests.sql)
+  - Write tests that check row counts, expected values, or structure for at least two important queries.
 - [ ] R49 — Document each query (queries/README.md: intent, tags, complexity)
   - Expected activities:
     - Add a `queries/README.md` with a one-line description and tags (beginner/advanced/window/indexing) for each query file.
