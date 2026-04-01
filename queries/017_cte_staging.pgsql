@@ -4,9 +4,16 @@
 -- It is defined using the WITH clause and can be used to simplify complex queries, improve readability, and enable recursive queries.
 -- It improves clarity by breaking complex queries into logical steps, making each transformation explicit and easier to debug or modify.
 ------------------------------------------------------------------------------------------------------
+-- CTE vs Subquery
+-- CTEs and subqueries both allow you to break down complex queries, but they have some differences:
+-- 1. Readability: CTEs can be easier to read and understand, especially when dealing with multiple levels of nesting, as they allow you to name intermediate result sets.
+-- 2. Reusability: CTEs can be referenced multiple times within the same query, while subqueries are typically used once and then you need to repeat the same logic.
+-- 3. Performance: In some cases, CTEs may be optimized differently than subqueries, but this can depend on the database engine and the specific query. 
+--                 Generally, CTEs are not materialized and are optimized as part of the overall query plan, while subqueries may be executed separately.
+-- 4. Recursive Queries: CTEs support recursion, allowing you to perform hierarchical queries, while subqueries do not have this capability.        
+------------------------------------------------------------------------------------------------------
 
-
--- Task: Rewrite a multi-join aggregation query using CTEs for clarity and maintainability.
+-- TASK: Rewrite a multi-join aggregation query using CTEs for clarity and maintainability.
 --
 -- Identify an existing query (e.g., total sales per artist joining tracks, albums, invoice_items) that uses multiple joins and aggregations.
 -- Rewrite this query using at least two CTEs:
