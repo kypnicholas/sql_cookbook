@@ -124,7 +124,7 @@ D. Window functions & analytics ✅
 
 E. CTEs, recursive queries & advanced logic ⏳ (in progress)
 
-- [ ] E17 — Simple CTEs for staging/clarity (queries/017_cte_staging.sql)
+- [ ] E17 — Simple CTEs for staging/clarity (queries/017_standalone_cte.sql)
   - Identify an existing query (e.g., total sales per artist joining tracks, albums, invoice_items) that uses multiple joins and aggregations.
   - Rewrite this query using at least two CTEs:
     - First CTE: Stage a join between tracks, albums, and artists.
