@@ -1,4 +1,3 @@
-
 ------------------------------------------------------------------------------------------------------
 -- Recursive CTE definition
 -- A Recursive CTE is a self referencing query that reapeatedly references itself until a condition is met. 
@@ -6,8 +5,8 @@
 -- Recursive CTEs are often used to traverse hierarchical data, such as organizational charts, bill of materials, or any parent-child relationships.
 ------------------------------------------------------------------------------------------------------
 
--- TASK: Write a query using WITH RECURSIVE to list the management chain for a given employee (start with an employee_id).
--- 1. Output should include: employee_id, manager_id, level (distance from top), and a concatenated path of names.
+-- TASK: Write a query using WITH RECURSIVE to list the management chain for a given employee (start with an employee_id), using the reports_to column in the employee table.
+-- 1. Output should include: employee_id, reports_to, level (distance from top), and a concatenated path of first and last names.
 -- 2. Provide an example result for one employee.
 
 -- NOTES: a. The anchor member will select the starting employee based on the provided employee_id.
@@ -18,9 +17,9 @@ WITH RECURSIVE ManagementChain AS (
     -- Anchor member: Start with the given employee_id
     SELECT
         employee_id,
-        manager_id,
+        reports_to,
         0 AS level,
-        name AS path
+        CONCAT(first_name, ' ', last_name, ' [', title, ']') AS path
     FROM employee
     WHERE employee_id = 5 -- Replace with the desired employee_id
 
@@ -29,11 +28,11 @@ WITH RECURSIVE ManagementChain AS (
     -- Recursive member: Join the CTE with the employee table to find the manager
     SELECT
         e.employee_id,
-        e.manager_id,
+        e.reports_to,
         mc.level + 1 AS level,
-        CONCAT(e.name, ' -> ', mc.path) AS path
+        CONCAT(e.first_name, ' ', e.last_name, ' [', e.title, '] -> ', mc.path) AS path
     FROM employee e
-    JOIN ManagementChain mc ON e.employee_id = mc.manager_id
+    JOIN ManagementChain mc ON e.employee_id = mc.reports_to
 )
 SELECT *
 FROM ManagementChain;
