@@ -13,4 +13,4 @@ SELECT first_name, last_name, email FROM public.customer WHERE Country = 'German
 SELECT * FROM public.invoice WHERE Total > 5.00 LIMIT 100;
 
 -- Find all tracks with 'love' in the name (case insensitive) --
-SELECT name,composer from public.track WHERE name like lower('%love%');
+SELECT name, composer FROM public.track WHERE name ILIKE '%love%';
