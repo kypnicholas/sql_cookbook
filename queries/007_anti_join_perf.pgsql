@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: B7-SUP
 -- Title: Anti-join performance comparison
 -- Goal: Compare execution plans of LEFT JOIN IS NULL and NOT EXISTS anti-join forms.

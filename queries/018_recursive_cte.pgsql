@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: E18
 -- Title: Recursive CTE management chain
 -- Goal: Traverse employee hierarchy using reports_to and build readable paths.

@@ -1,0 +1,1111 @@
+{
+  "generated_at": "2026-05-19T08:43:50.434327+00:00",
+  "summary": {
+    "total": 19,
+    "passed": 18,
+    "failed": 1
+  },
+  "tests": [
+    {
+      "id": "A1",
+      "title": "Simple SELECTs and filters",
+      "query_file": "queries/001_select_filters.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": 100,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": 4,
+          "error": null
+        },
+        {
+          "index": 4,
+          "success": true,
+          "row_count": 4,
+          "error": null
+        },
+        {
+          "index": 5,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 6,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=6/6"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=6, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['country', 'filter']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['numeric', 'filter']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['case', 'insensitive', 'text', 'search']"
+        },
+        {
+          "name": "a1_base_tables_have_rows",
+          "pass": true,
+          "details": "first_col=True"
+        },
+        {
+          "name": "a1_country_filter_has_german_customers",
+          "pass": true,
+          "details": "first_col=True"
+        },
+        {
+          "name": "a1_country_projection_columns_populated",
+          "pass": true,
+          "details": "first_col=True"
+        },
+        {
+          "name": "a1_numeric_filter_has_invoices_over_5",
+          "pass": true,
+          "details": "first_col=True"
+        },
+        {
+          "name": "a1_text_search_ilike_has_love_tracks",
+          "pass": true,
+          "details": "first_col=True"
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "DISTINCT and COUNT(DISTINCT)",
+      "query_file": "queries/002_distinct_counts.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 4,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=4/4"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=4, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['distinct', 'billing', 'countries']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['distinct', 'genres']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['email', 'uniqueness', 'check']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "title": "Pagination and keyset patterns",
+      "query_file": "queries/003_pagination.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 4,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 5,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=5/5"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=5, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['offset', 'example']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['keyset', 'example']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['date', 'based', 'page', 'example']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "title": "Casting and formatting",
+      "query_file": "queries/004_casts_formatting.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=3/3"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=3, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['integer', 'cast']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['currency', 'formatting']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['milliseconds', 'minutes', 'seconds', 'conversion']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "B5",
+      "title": "Basic joins",
+      "query_file": "queries/005_joins_basic.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=3/3"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=3, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['track', 'album', 'artist', 'join']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['albums', 'without', 'tracks']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['grouped', 'join', 'summary']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "B6",
+      "title": "Many-to-many joins",
+      "query_file": "queries/006_many_to_many.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=3/3"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=3, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['playlist', 'track', 'listing']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['multi', 'playlist', 'track', 'detection']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['aggregated', 'playlist', 'names']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "B7",
+      "title": "Anti-join patterns",
+      "query_file": "queries/007_anti_join.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 4,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=4/4"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=4, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['left', 'join', 'null', 'not']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "B7-SUP",
+      "title": "Anti-join performance comparison",
+      "query_file": "queries/007_anti_join_perf.pgsql",
+      "overall_pass": false,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": false,
+          "row_count": null,
+          "error": "VACUUM cannot run inside a transaction block"
+        }
+      ],
+      "failed_statements": [
+        {
+          "index": 1,
+          "success": false,
+          "row_count": null,
+          "error": "VACUUM cannot run inside a transaction block"
+        }
+      ],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": false,
+          "details": "successful=0/1"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": false,
+          "details": "successful=0, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['explain', 'analyze', 'runs', 'planning']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "B8",
+      "title": "Semi-join patterns",
+      "query_file": "queries/008_semi_join.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 4,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 5,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=5/5"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=5, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['sold', 'artists', 'via', 'exists']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['duplicate', 'prone', 'join', 'example']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['deduplicated', 'alternatives']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "C9",
+      "title": "GROUP BY and HAVING basics",
+      "query_file": "queries/009_group_by.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=3/3"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=3, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['revenue', 'per', 'customer']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['orders', 'per', 'country']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['genre', 'revenue', 'having', 'threshold']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "title": "ROLLUP, GROUPING SETS, and CUBE",
+      "query_file": "queries/010_grouping_sets.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 4,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=4/4"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=4, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['one', 'rollup']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['one', 'cube']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['one', 'grouping', 'sets', 'example']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "title": "FILTER aggregates",
+      "query_file": "queries/011_filter_aggregates.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=3/3"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=3, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['where', 'filter', 'comparison', 'conditional']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "title": "Percentiles and distribution",
+      "query_file": "queries/012_percentiles.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 4,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=4/4"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=4, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['quartile', 'assignment']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['quartile', 'summary']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['percentile', 'cut', 'points']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "D13",
+      "title": "ROW_NUMBER, RANK, DENSE_RANK",
+      "query_file": "queries/013_rank_window.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=3/3"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=3, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['top', 'selling', 'track', 'per']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "D14",
+      "title": "LAG and LEAD",
+      "query_file": "queries/014_lag_lead.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=2/2"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=2, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['days', 'since', 'prior', 'invoice']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "D15",
+      "title": "Running totals and rolling windows",
+      "query_file": "queries/015_running_totals.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 3,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=3/3"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=3, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['running', 'total', 'per', 'customer']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "D16",
+      "title": "Window percentiles and distributions",
+      "query_file": "queries/016_window_percentiles.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        },
+        {
+          "index": 2,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=2/2"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=2, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['customer', 'spend', 'percentile', 'ranking']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "E17",
+      "title": "Standalone and dependent CTEs",
+      "query_file": "queries/017_standalone_cte.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=1/1"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=1, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['trackartist', 'cte']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['artistsales', 'cte']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['final', 'ordered', 'output']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    },
+    {
+      "id": "E18",
+      "title": "Recursive CTE management chain",
+      "query_file": "queries/018_recursive_cte.pgsql",
+      "overall_pass": true,
+      "statement_results": [
+        {
+          "index": 1,
+          "success": true,
+          "row_count": null,
+          "error": null
+        }
+      ],
+      "failed_statements": [],
+      "checks": [
+        {
+          "name": "must_execute",
+          "pass": true,
+          "details": "successful=1/1"
+        },
+        {
+          "name": "min_successful_statements",
+          "pass": true,
+          "details": "successful=1, required=1"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_1",
+          "pass": true,
+          "details": "found=['employee_id']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_2",
+          "pass": true,
+          "details": "found=['reports_to']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_3",
+          "pass": true,
+          "details": "found=['level']"
+        },
+        {
+          "name": "deliverable_keyword:deliverable_4",
+          "pass": true,
+          "details": "found=['name', 'title', 'path', 'output']"
+        },
+        {
+          "name": "override_me",
+          "pass": true,
+          "details": "Skipped (enabled=false)"
+        }
+      ]
+    }
+  ]
+}

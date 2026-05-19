@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: D16
 -- Title: Window percentiles and distributions
 -- Goal: Use PERCENT_RANK and CUME_DIST for comparative analytics.

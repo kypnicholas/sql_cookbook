@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: D14
 -- Title: LAG and LEAD
 -- Goal: Compute inter-invoice time gaps using previous/next row access.

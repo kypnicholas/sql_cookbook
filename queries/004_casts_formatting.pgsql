@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: A4
 -- Title: Casting and formatting
 -- Goal: Practice explicit and shorthand casts plus presentation formatting.

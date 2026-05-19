@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: C10
 -- Title: ROLLUP, GROUPING SETS, and CUBE
 -- Goal: Produce multi-level subtotal reports in a single query family.

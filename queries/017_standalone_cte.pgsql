@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: E17
 -- Title: Standalone and dependent CTEs
 -- Goal: Refactor a multi-join aggregation query into named CTE stages.

@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: A2
 -- Title: DISTINCT and COUNT(DISTINCT)
 -- Goal: Measure uniqueness and categorical spread across core dimensions.

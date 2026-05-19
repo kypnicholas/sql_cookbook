@@ -1,0 +1,882 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-19T07:39:28.618579+00:00",
+  "queries_dir": "queries",
+  "tests": [
+    {
+      "id": "A1",
+      "title": "Simple SELECTs and filters",
+      "query_file": "queries/001_select_filters.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "country filter",
+        "numeric filter",
+        "case-insensitive text search."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "country filter",
+            "any_of": [
+              "country",
+              "filter"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "numeric filter",
+            "any_of": [
+              "numeric",
+              "filter"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "case-insensitive text search.",
+            "any_of": [
+              "case",
+              "insensitive",
+              "text",
+              "search"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "a1_base_tables_have_rows",
+          "sql": "SELECT (SELECT COUNT(*) > 0 FROM public.album) AND (SELECT COUNT(*) > 0 FROM public.artist)",
+          "enabled": true
+        },
+        {
+          "name": "a1_country_filter_has_german_customers",
+          "sql": "SELECT EXISTS (SELECT 1 FROM public.customer WHERE country = 'Germany')",
+          "enabled": true
+        },
+        {
+          "name": "a1_country_projection_columns_populated",
+          "sql": "SELECT EXISTS (SELECT 1 FROM public.customer WHERE country = 'Germany' AND first_name IS NOT NULL AND last_name IS NOT NULL AND email IS NOT NULL)",
+          "enabled": true
+        },
+        {
+          "name": "a1_numeric_filter_has_invoices_over_5",
+          "sql": "SELECT EXISTS (SELECT 1 FROM public.invoice WHERE total > 5.00)",
+          "enabled": true
+        },
+        {
+          "name": "a1_text_search_ilike_has_love_tracks",
+          "sql": "SELECT EXISTS (SELECT 1 FROM public.track WHERE name ILIKE '%love%')",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "DISTINCT and COUNT(DISTINCT)",
+      "query_file": "queries/002_distinct_counts.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "distinct billing countries",
+        "distinct genres",
+        "email uniqueness check."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "distinct billing countries",
+            "any_of": [
+              "distinct",
+              "billing",
+              "countries"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "distinct genres",
+            "any_of": [
+              "distinct",
+              "genres"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "email uniqueness check.",
+            "any_of": [
+              "email",
+              "uniqueness",
+              "check"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "title": "Pagination and keyset patterns",
+      "query_file": "queries/003_pagination.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "OFFSET example",
+        "keyset example",
+        "date-based page example."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "OFFSET example",
+            "any_of": [
+              "offset",
+              "example"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "keyset example",
+            "any_of": [
+              "keyset",
+              "example"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "date-based page example.",
+            "any_of": [
+              "date",
+              "based",
+              "page",
+              "example"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "title": "Casting and formatting",
+      "query_file": "queries/004_casts_formatting.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "integer cast",
+        "currency formatting",
+        "milliseconds to minutes/seconds conversion."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "integer cast",
+            "any_of": [
+              "integer",
+              "cast"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "currency formatting",
+            "any_of": [
+              "currency",
+              "formatting"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "milliseconds to minutes/seconds conversion.",
+            "any_of": [
+              "milliseconds",
+              "minutes",
+              "seconds",
+              "conversion"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "B5",
+      "title": "Basic joins",
+      "query_file": "queries/005_joins_basic.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "track-album-artist join",
+        "albums without tracks",
+        "grouped join summary."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "track-album-artist join",
+            "any_of": [
+              "track",
+              "album",
+              "artist",
+              "join"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "albums without tracks",
+            "any_of": [
+              "albums",
+              "without",
+              "tracks"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "grouped join summary.",
+            "any_of": [
+              "grouped",
+              "join",
+              "summary"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "B6",
+      "title": "Many-to-many joins",
+      "query_file": "queries/006_many_to_many.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "playlist track listing",
+        "multi-playlist track detection",
+        "aggregated playlist names."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "playlist track listing",
+            "any_of": [
+              "playlist",
+              "track",
+              "listing"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "multi-playlist track detection",
+            "any_of": [
+              "multi",
+              "playlist",
+              "track",
+              "detection"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "aggregated playlist names.",
+            "any_of": [
+              "aggregated",
+              "playlist",
+              "names"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "B7",
+      "title": "Anti-join patterns",
+      "query_file": "queries/007_anti_join.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "LEFT JOIN IS NULL and NOT EXISTS versions for customers and tracks."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "LEFT JOIN IS NULL and NOT EXISTS versions for customers and tracks.",
+            "any_of": [
+              "left",
+              "join",
+              "null",
+              "not"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "B7-SUP",
+      "title": "Anti-join performance comparison",
+      "query_file": "queries/007_anti_join_perf.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "EXPLAIN ANALYZE runs and planning notes."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "EXPLAIN ANALYZE runs and planning notes.",
+            "any_of": [
+              "explain",
+              "analyze",
+              "runs",
+              "planning"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "B8",
+      "title": "Semi-join patterns",
+      "query_file": "queries/008_semi_join.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "sold artists via EXISTS",
+        "duplicate-prone JOIN example",
+        "deduplicated alternatives."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "sold artists via EXISTS",
+            "any_of": [
+              "sold",
+              "artists",
+              "via",
+              "exists"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "duplicate-prone JOIN example",
+            "any_of": [
+              "duplicate",
+              "prone",
+              "join",
+              "example"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "deduplicated alternatives.",
+            "any_of": [
+              "deduplicated",
+              "alternatives"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "C9",
+      "title": "GROUP BY and HAVING basics",
+      "query_file": "queries/009_group_by.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "revenue per customer",
+        "orders per country",
+        "genre revenue with HAVING threshold."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "revenue per customer",
+            "any_of": [
+              "revenue",
+              "per",
+              "customer"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "orders per country",
+            "any_of": [
+              "orders",
+              "per",
+              "country"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "genre revenue with HAVING threshold.",
+            "any_of": [
+              "genre",
+              "revenue",
+              "having",
+              "threshold"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "title": "ROLLUP, GROUPING SETS, and CUBE",
+      "query_file": "queries/010_grouping_sets.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "one ROLLUP",
+        "one CUBE",
+        "one GROUPING SETS example."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "one ROLLUP",
+            "any_of": [
+              "one",
+              "rollup"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "one CUBE",
+            "any_of": [
+              "one",
+              "cube"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "one GROUPING SETS example.",
+            "any_of": [
+              "one",
+              "grouping",
+              "sets",
+              "example"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "title": "FILTER aggregates",
+      "query_file": "queries/011_filter_aggregates.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "WHERE vs FILTER comparison and conditional count/sum examples."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "WHERE vs FILTER comparison and conditional count/sum examples.",
+            "any_of": [
+              "where",
+              "filter",
+              "comparison",
+              "conditional"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "title": "Percentiles and distribution",
+      "query_file": "queries/012_percentiles.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "quartile assignment",
+        "quartile summary",
+        "percentile cut points."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "quartile assignment",
+            "any_of": [
+              "quartile",
+              "assignment"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "quartile summary",
+            "any_of": [
+              "quartile",
+              "summary"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "percentile cut points.",
+            "any_of": [
+              "percentile",
+              "cut",
+              "points"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "D13",
+      "title": "ROW_NUMBER, RANK, DENSE_RANK",
+      "query_file": "queries/013_rank_window.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "top-selling track per genre using each ranking function."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "top-selling track per genre using each ranking function.",
+            "any_of": [
+              "top",
+              "selling",
+              "track",
+              "per"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "D14",
+      "title": "LAG and LEAD",
+      "query_file": "queries/014_lag_lead.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "days since prior invoice and days until next invoice per customer."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "days since prior invoice and days until next invoice per customer.",
+            "any_of": [
+              "days",
+              "since",
+              "prior",
+              "invoice"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "D15",
+      "title": "Running totals and rolling windows",
+      "query_file": "queries/015_running_totals.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "running total per customer and rolling 7-day revenue."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "running total per customer and rolling 7-day revenue.",
+            "any_of": [
+              "running",
+              "total",
+              "per",
+              "customer"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "D16",
+      "title": "Window percentiles and distributions",
+      "query_file": "queries/016_window_percentiles.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "customer spend percentile ranking and track price cumulative distribution."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "customer spend percentile ranking and track price cumulative distribution.",
+            "any_of": [
+              "customer",
+              "spend",
+              "percentile",
+              "ranking"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "E17",
+      "title": "Standalone and dependent CTEs",
+      "query_file": "queries/017_standalone_cte.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "TrackArtist CTE",
+        "ArtistSales CTE",
+        "final ordered output."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "TrackArtist CTE",
+            "any_of": [
+              "trackartist",
+              "cte"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "ArtistSales CTE",
+            "any_of": [
+              "artistsales",
+              "cte"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "final ordered output.",
+            "any_of": [
+              "final",
+              "ordered",
+              "output"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "E18",
+      "title": "Recursive CTE management chain",
+      "query_file": "queries/018_recursive_cte.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "employee_id",
+        "reports_to",
+        "level",
+        "and name/title path output."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "employee_id",
+            "any_of": [
+              "employee_id"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "reports_to",
+            "any_of": [
+              "reports_to"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "level",
+            "any_of": [
+              "level"
+            ]
+          },
+          {
+            "name": "deliverable_4",
+            "description": "and name/title path output.",
+            "any_of": [
+              "name",
+              "title",
+              "path",
+              "output"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    }
+  ]
+}

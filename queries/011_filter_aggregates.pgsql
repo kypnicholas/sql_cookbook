@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: C11
 -- Title: FILTER aggregates
 -- Goal: Compute conditional aggregates without multiple query passes.

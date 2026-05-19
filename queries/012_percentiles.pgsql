@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: C12
 -- Title: Percentiles and distribution
 -- Goal: Use NTILE and percentile_cont to inspect value distribution.

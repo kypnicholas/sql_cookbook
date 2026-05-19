@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: A3
 -- Title: Pagination and keyset patterns
 -- Goal: Compare OFFSET/LIMIT pagination against keyset pagination.

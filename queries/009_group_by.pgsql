@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: C9
 -- Title: GROUP BY and HAVING basics
 -- Goal: Build grouped revenue and count summaries with post-aggregation filtering.

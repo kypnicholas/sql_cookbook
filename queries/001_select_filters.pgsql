@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: A1
 -- Title: Simple SELECTs and filters
 -- Goal: Practice basic projection, filtering, and text search on Chinook tables.

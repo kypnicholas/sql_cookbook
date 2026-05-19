@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: B6
 -- Title: Many-to-many joins
 -- Goal: Query bridge-table relationships between playlists and tracks.

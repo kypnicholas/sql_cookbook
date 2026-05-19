@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: D15
 -- Title: Running totals and rolling windows
 -- Goal: Build cumulative and rolling revenue metrics with window frames.

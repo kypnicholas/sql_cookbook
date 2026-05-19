@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: B5
 -- Title: Basic joins
 -- Goal: Practice INNER and LEFT joins over track, album, and artist relationships.

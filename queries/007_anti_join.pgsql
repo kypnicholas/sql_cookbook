@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: B7
 -- Title: Anti-join patterns
 -- Goal: Find rows on the left side with no matching rows on the right side.

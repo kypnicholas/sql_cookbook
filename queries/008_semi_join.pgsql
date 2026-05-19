@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: B8
 -- Title: Semi-join patterns
 -- Goal: Use EXISTS/IN to test existence without duplicating left-side rows.

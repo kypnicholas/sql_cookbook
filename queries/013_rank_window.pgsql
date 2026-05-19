@@ -1,4 +1,4 @@
-﻿-- TASK FORMAT
+-- TASK FORMAT
 -- Task ID: D13
 -- Title: ROW_NUMBER, RANK, DENSE_RANK
 -- Goal: Compare ranking window functions and tie behavior.
