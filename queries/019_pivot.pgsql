@@ -1,0 +1,12 @@
+-- TASK FORMAT
+-- Task ID: E19
+-- Title: Pivoting and crosstab fallback
+-- Goal: Build a three-month revenue pivot with a tablefunc.crosstab path and a no-extension fallback.
+-- Deliverables: crosstab monthly revenue pivot; FILTER monthly revenue pivot; matching month columns and totals.
+-- Verification: Both approaches use the same three months and produce the same totals.
+-- -----------------------------------------------------------------------------
+-- Pivoting definition.
+-- Pivoting rotates row values into columns so month-over-month comparisons are easier to read.
+-- This template keeps the month window logic shared so both approaches stay aligned.
+-- -----------------------------------------------------------------------------
+
