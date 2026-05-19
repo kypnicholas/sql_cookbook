@@ -1,5 +1,11 @@
--- EXPLAIN/ANALYZE comparisons: anti-join (LEFT JOIN/IS NULL) vs NOT EXISTS
--- File: queries/007_anti_join_explain.pgsql
+﻿-- TASK FORMAT
+-- Task ID: B7-SUP
+-- Title: Anti-join performance comparison
+-- Goal: Compare execution plans of LEFT JOIN IS NULL and NOT EXISTS anti-join forms.
+-- Deliverables: EXPLAIN ANALYZE runs and planning notes.
+-- Verification: Plan nodes and timings are captured for both query forms.
+-- EXPLAIN/ANALYZE comparisons: anti-join (LEFT JOIN/IS NULL) vs NOT EXISTS.
+-- File: queries/007_anti_join_explain.pgsql.
 -- WARNING: Running the EXPLAINs with ANALYZE will execute the queries.
 
 -- 1) Refresh planner statistics (recommended before benchmarking)
@@ -25,3 +31,4 @@ WHERE NOT EXISTS (
 -- - Run each EXPLAIN multiple times to compare cold vs warm cache behavior.
 -- - Use the JSON output to compare node types, actual times, and buffer usage.
 -- - Consider using pg_stat_statements for aggregated production metrics.
+

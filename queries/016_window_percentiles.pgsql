@@ -1,6 +1,12 @@
+﻿-- TASK FORMAT
+-- Task ID: D16
+-- Title: Window percentiles and distributions
+-- Goal: Use PERCENT_RANK and CUME_DIST for comparative analytics.
+-- Deliverables: customer spend percentile ranking and track price cumulative distribution.
+-- Verification: Highest spender has top percent_rank and highest prices approach cume_dist 1.
 
--- PERCENT_RANK() definition
--- The PERCENT_RANK() window function calculates the relative rank of a row within a partition of a result set, expressed as a percentage. 
+-- PERCENT_RANK() definition.
+-- The PERCENT_RANK() window function calculates the relative rank of a row within a partition of a result set, expressed as a percentage.
 -- It is often used to determine the position of a value within a sorted list of values, such as finding the percentile rank of a value in a dataset.
 
 -- Rank customers by total spend (across customers).
@@ -25,10 +31,10 @@ ORDER BY total_spent DESC, customer_id;
 
 
 
--- CUME_DIST() definition
--- The CUME_DIST() window function calculates the cumulative distribution of a value within a partition of a result set, expressed as a percentage. 
--- It is often used to determine the percentage of rows that have a value less than or equal to the current row's value, 
--- such as finding the cumulative distribution of a value in a dataset.
+-- CUME_DIST() definition.
+-- The CUME_DIST() window function calculates the cumulative distribution of a value within a partition of a result set, expressed as a percentage.
+-- It is often used to determine the percentage of rows that have a value less than or equal to the current row's value,.
+-- Such as finding the cumulative distribution of a value in a dataset.
 
 -- Cumulative distribution of tracks by unit price.
 SELECT

@@ -1,7 +1,13 @@
+﻿-- TASK FORMAT
+-- Task ID: D15
+-- Title: Running totals and rolling windows
+-- Goal: Build cumulative and rolling revenue metrics with window frames.
+-- Deliverables: running total per customer and rolling 7-day revenue.
+-- Verification: Window-frame behavior is visible in ordered outputs.
 -- Running total of customer spend: SUM(total) OVER (PARTITION BY customer_id ORDER BY invoice_date).
 
--- Running total definition
--- A running total, also known as a cumulative sum, is a sequence of partial sums of a given data set. 
+-- Running total definition.
+-- A running total, also known as a cumulative sum, is a sequence of partial sums of a given data set.
 -- You can calculate a running total using the SUM() window function combined with an appropriate OVER() clause to define the partitioning and ordering of the data.
 
 SELECT
@@ -15,12 +21,12 @@ ORDER BY customer_id, invoice_date;
 
 
 
--- 7-day rolling revenue using RANGE or ROWS BETWEEN.
+-- 7-Day rolling revenue using RANGE or ROWS BETWEEN.
 
--- Rolling total definition
--- A rolling total, also known as a moving sum, is a calculation that provides the sum of a specified number of consecutive data points in a dataset. 
--- You can calculate a rolling total using the SUM() window function combined with an appropriate OVER() clause that defines the range of rows to include in the calculation, 
--- such as ROWS BETWEEN or RANGE BETWEEN.
+-- Rolling total definition.
+-- A rolling total, also known as a moving sum, is a calculation that provides the sum of a specified number of consecutive data points in a dataset.
+-- You can calculate a rolling total using the SUM() window function combined with an appropriate OVER() clause that defines the range of rows to include in the calculation,.
+-- Such as ROWS BETWEEN or RANGE BETWEEN.
 
 SELECT
     invoice_date,
@@ -31,11 +37,11 @@ ORDER BY invoice_date;
 
 
 
--- Example query that will show, for each invoice, exactly which rows are included in its 7-day rolling sum window. 
+-- Example query that will show, for each invoice, exactly which rows are included in its 7-day rolling sum window.
 -- This uses a lateral join (CROSS JOIN LATERAL) for debugging:
 
--- CROSS JOIN LATERAL definition
--- A CROSS JOIN LATERAL allows you to join each row from the left table with a set of rows returned by a subquery that can reference columns from the left table. 
+-- CROSS JOIN LATERAL definition.
+-- A CROSS JOIN LATERAL allows you to join each row from the left table with a set of rows returned by a subquery that can reference columns from the left table.
 -- It is often used to perform calculations that depend on the current row's values, such as calculating a rolling total or performing a lookup based on the current row's data.
 
 SELECT

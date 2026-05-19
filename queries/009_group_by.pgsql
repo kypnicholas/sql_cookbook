@@ -1,5 +1,11 @@
+﻿-- TASK FORMAT
+-- Task ID: C9
+-- Title: GROUP BY and HAVING basics
+-- Goal: Build grouped revenue and count summaries with post-aggregation filtering.
+-- Deliverables: revenue per customer, orders per country, genre revenue with HAVING threshold.
+-- Verification: Grouped totals are sorted and HAVING filters out below-threshold groups.
 
--- Revenue per customer --
+-- Revenue per customer.
 SELECT customer.customer_id,customer.first_name,customer.last_name, sum(invoice.total) AS total_revenue
  FROM public.customer customer 
 LEFT JOIN public.invoice invoice ON customer.customer_id = invoice.customer_id
@@ -7,7 +13,7 @@ GROUP BY customer.customer_id, customer.first_name, customer.last_name
 ORDER BY total_revenue DESC
 LIMIT 10;
 
--- Orders per country --
+-- Orders per country.
 SELECT customer.country, count(invoice.invoice_id) AS total_orders, sum(invoice.total) AS total_revenue
  FROM public.customer customer      
 LEFT JOIN public.invoice invoice ON customer.customer_id = invoice.customer_id
@@ -15,7 +21,7 @@ GROUP BY customer.country
 ORDER BY total_orders DESC
 LIMIT 10;
 
--- Genres with revenue > 100USD --
+-- Genres with revenue > 100USD.
 SELECT genre.name AS genre_name, 
     SUM(il.unit_price * il.quantity) AS genre_revenue,
     to_char(SUM(il.unit_price * il.quantity), 'FM$999,999,999.00') AS genre_revenue_usd

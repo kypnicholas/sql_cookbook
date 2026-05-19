@@ -1,10 +1,16 @@
--- NTILE Definition
--- NTILE is a window function that divides ordered rows into a specified number of approximately equal groups, or "tiles". 
+﻿-- TASK FORMAT
+-- Task ID: C12
+-- Title: Percentiles and distribution
+-- Goal: Use NTILE and percentile_cont to inspect value distribution.
+-- Deliverables: quartile assignment, quartile summary, percentile cut points.
+-- Verification: q1/median/q3 and tile-level stats are returned.
+-- NTILE Definition.
+-- NTILE is a window function that divides ordered rows into a specified number of approximately equal groups, or "tiles".
 -- Each row is assigned a tile number from 1 to N, where N is the number of tiles specified.
 -- It is commonly used for ranking, quartile calculations, and distributing data into equal-sized buckets.
 
 -- 1) Assign each track to a quartile (1..4) using NTILE(4).
---    Quartile 1 = cheapest, Quartile 4 = most expensive (ordered by unit_price ASC).
+-- Quartile 1 = cheapest, Quartile 4 = most expensive (ordered by unit_price ASC).
 SELECT
 	track_id,
 	name,
@@ -39,13 +45,13 @@ FROM public.track
 ORDER BY genre_id, genre_quartile, unit_price;
 
 
--- PERCENTILE_CONT DEFINITION
+-- PERCENTILE_CONT DEFINITION.
 -- PERCENTILE_CONT is an ordered-set aggregate function that computes a specified percentile value from a set of values.
 -- It interpolates between values when the desired percentile falls between two data points.
 -- It is often used in statistical analysis to understand the distribution of data.
 
 -- 4) Compute quartile cutpoints using percentile_cont (continuous percentile)
---    This returns the value at each quartile boundary (0.25, 0.5, 0.75)
+-- This returns the value at each quartile boundary (0.25, 0.5, 0.75)
 SELECT
 	percentile_cont(0.25) WITHIN GROUP (ORDER BY unit_price) AS q1,
 	percentile_cont(0.5)  WITHIN GROUP (ORDER BY unit_price) AS median,
