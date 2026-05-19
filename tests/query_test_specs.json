@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-19T07:39:28.618579+00:00",
+  "generated_at": "2026-05-19T13:16:09.974874+00:00",
   "queries_dir": "queries",
   "tests": [
     {
@@ -866,6 +866,61 @@
               "title",
               "path",
               "output"
+            ]
+          }
+        ]
+      },
+      "custom_assertions": [
+        {
+          "name": "override_me",
+          "sql": "SELECT TRUE AS pass",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "id": "E19",
+      "title": "Pivoting and crosstab fallback",
+      "query_file": "queries/019_pivot.pgsql",
+      "enabled": true,
+      "deliverables": [
+        "crosstab monthly revenue pivot",
+        "FILTER monthly revenue pivot",
+        "matching month columns and totals."
+      ],
+      "assertions": {
+        "must_execute": true,
+        "min_successful_statements": 1,
+        "must_return_rows": false,
+        "deliverable_keywords": [
+          {
+            "name": "deliverable_1",
+            "description": "crosstab monthly revenue pivot",
+            "any_of": [
+              "crosstab",
+              "monthly",
+              "revenue",
+              "pivot"
+            ]
+          },
+          {
+            "name": "deliverable_2",
+            "description": "FILTER monthly revenue pivot",
+            "any_of": [
+              "filter",
+              "monthly",
+              "revenue",
+              "pivot"
+            ]
+          },
+          {
+            "name": "deliverable_3",
+            "description": "matching month columns and totals.",
+            "any_of": [
+              "matching",
+              "month",
+              "columns",
+              "totals"
             ]
           }
         ]
