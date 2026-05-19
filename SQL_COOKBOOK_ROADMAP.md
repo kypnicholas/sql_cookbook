@@ -50,95 +50,118 @@
 ### A. Basic Queries (Fundamentals) - Complete
 
 - [x] A1 - Simple SELECTs and filters (`queries/001_select_filters.pgsql`)
-  - Select customer identity columns (`first_name`, `last_name`, `email`) with a country filter.
-  - Filter invoices by numeric threshold (`total > 5.00`).
-  - Search tracks containing "love" in `name`.
-  - Save three output samples (country filter, total filter, text search).
+  - Deliverable A: Base exploration queries on `album` and `artist` plus filtered customer projection by country.
+  - Deliverable B: Numeric filter query for invoices with `total > 5.00`.
+  - Deliverable C: Case-insensitive text search for tracks containing "love" using `ILIKE`.
+  - Verification: All deliverables are implemented in the file and return expected rows in Supabase.
 
 - [x] A2 - DISTINCT and COUNT(DISTINCT) (`queries/002_distinct_counts.pgsql`)
-  - Count distinct `billing_country` values from `invoice`.
-  - List distinct genres from `genre`.
-  - Compare `COUNT(*)` vs `COUNT(DISTINCT email)` in `customer`.
+  - Deliverable A: Distinct transaction counts by `billing_country`.
+  - Deliverable B: Distinct genre listing from `genre`.
+  - Deliverable C: Email uniqueness check (`COUNT(*)` vs `COUNT(DISTINCT email)`).
+  - Verification: Query outputs show category-level distinctness and identity-level uniqueness metrics.
 
 - [x] A3 - Pagination and keyset patterns (`queries/003_pagination.pgsql`)
-  - Show LIMIT/OFFSET pagination ordered by `invoice_id`.
-  - Show keyset pagination with `invoice_id > :last_seen_id` pattern.
-  - Show date-based paging using `invoice_date` cursor columns.
-  - Document OFFSET vs keyset tradeoffs.
+  - Deliverable A: LIMIT/OFFSET pagination examples ordered by `invoice_id`.
+  - Deliverable B: Keyset pagination with `invoice_id` and composite-key variants.
+  - Deliverable C: Date-based pagination over `invoice_date`.
+  - Verification: File demonstrates both pagination strategies and includes explanatory notes on tradeoffs.
 
 - [x] A4 - Casting, formatting, and simple type conversions (`queries/004_casts_formatting.pgsql`)
-  - Cast invoice totals to integer and formatted currency text.
-  - Use both `CAST(...)` and shorthand `::` forms.
-  - Convert track milliseconds into minute/second components.
+  - Deliverable A: Numeric casts on invoice totals using both `CAST(...)` and `::` syntax.
+  - Deliverable B: Currency formatting with `TO_CHAR`.
+  - Deliverable C: Track duration conversion from milliseconds to minute/second fields.
+  - Verification: Output includes original and converted representations for each conversion case.
 
 ### B. Joins and Relational Queries - Complete
 
 - [x] B5 - INNER and LEFT joins (`queries/005_joins_basic.pgsql`)
-  - Join `track -> album -> artist` for track metadata.
-  - LEFT JOIN `album -> track` to identify albums with zero tracks.
-  - Aggregate tracks by artist/album as a join + group example.
+  - Deliverable A: INNER JOIN path `track -> album -> artist` for track metadata.
+  - Deliverable B: LEFT JOIN `album -> track` to surface albums without tracks.
+  - Deliverable C: Join-plus-aggregation example (track counts by artist/album).
+  - Verification: Results include joined entities, null-preserving rows, and grouped summaries.
 
 - [x] B6 - Many-to-many joins (`queries/006_many_to_many.pgsql`)
-  - List tracks in a given playlist via `playlist_track` bridge.
-  - Find tracks appearing in multiple playlists with `HAVING COUNT(*) > 1`.
-  - Return all playlists per track using `array_agg`.
+  - Deliverable A: Playlist track listing through `playlist_track` bridge joins.
+  - Deliverable B: Multi-playlist track detection using `HAVING COUNT(*) > 1`.
+  - Deliverable C: Playlist aggregation per track via `array_agg`.
+  - Verification: File shows both row-level relationship traversal and grouped many-to-many summaries.
 
 - [x] B7 - Anti-join patterns (`queries/007_anti_join.pgsql`)
-  - Customers without invoices (`LEFT JOIN ... IS NULL`).
-  - Customers without invoices (`NOT EXISTS`).
-  - Tracks never sold (`LEFT JOIN ... IS NULL` and `NOT EXISTS`).
-  - Optional perf notes are in `queries/007_anti_join_perf.pgsql` and `queries/007_anti_join_perf_explain.md`.
+  - Deliverable A: Customer anti-join via `LEFT JOIN ... IS NULL`.
+  - Deliverable B: Equivalent customer anti-join via `NOT EXISTS`.
+  - Deliverable C: Unsold-track anti-join in both forms.
+  - Verification: Logical anti-join patterns are implemented in `queries/007_anti_join.pgsql`; plan benchmarking support exists in `queries/007_anti_join_perf.pgsql` with notes in `queries/007_anti_join_perf_explain.md`.
 
 - [x] B8 - Semi-join (EXISTS) patterns (`queries/008_semi_join.pgsql`)
-  - Artists with at least one sold track via `EXISTS`.
-  - Compare JOIN duplication vs `EXISTS`/`IN` existence checks.
-  - Aggregate playlists per track as a deduplicated presentation pattern.
+  - Deliverable A: `EXISTS` semi-join to identify artists with at least one sold track.
+  - Deliverable B: Side-by-side comparison of duplicate-prone JOIN output versus `EXISTS` and `IN` checks.
+  - Deliverable C: Aggregated playlist listing per track as a deduplicated result pattern.
+  - Verification: File demonstrates existence testing patterns and their effect on row duplication.
 
 ### C. Aggregation and Grouping Analysis - Complete
 
 - [x] C9 - GROUP BY and HAVING basics (`queries/009_group_by.pgsql`)
-  - Revenue per customer.
-  - Order count and revenue by customer country.
-  - Genre-level revenue example with `HAVING` threshold.
+  - Deliverable A: Revenue per customer grouped by customer identity columns.
+  - Deliverable B: Order count and revenue by customer country.
+  - Deliverable C: Genre revenue from line-level sales (`invoice_line.unit_price * quantity`) filtered with `HAVING > 100`.
+  - Verification: File contains all three grouped analyses and uses a non-overcounting genre revenue calculation.
 
 - [x] C10 - ROLLUP, GROUPING SETS, and CUBE (`queries/010_grouping_sets.pgsql`)
-  - Monthly-country-state detail plus subtotals in one query family.
-  - Demonstrate all three grouping operators and label subtotal rows.
+  - Deliverable A: Monthly-country-state detail with subtotals via `ROLLUP`.
+  - Deliverable B: Equivalent multidimensional subtotal output via `CUBE`.
+  - Deliverable C: Explicit subtotal control using `GROUPING SETS` plus labeled subtotal rows.
+  - Verification: All three operators are implemented in one file; companion explanation notes are in `queries/010_grouping_sets_combinations_explain.md`.
 
 - [x] C11 - FILTER aggregates (`queries/011_filter_aggregates.pgsql`)
-  - Compare `WHERE` aggregate vs `FILTER` aggregate.
-  - Return multi-country revenue and conditional counts in one pass.
+  - Deliverable A: Baseline aggregate with `WHERE` filtering.
+  - Deliverable B: Multi-condition revenue aggregates using `FILTER` in one query.
+  - Deliverable C: Conditional count breakdown using `FILTER`.
+  - Verification: Outputs show single-pass conditional aggregate patterns for both sums and counts.
 
 - [x] C12 - Percentiles and distribution (`queries/012_percentiles.pgsql`)
-  - Use `NTILE(4)` for quartile assignment.
-  - Summarize quartiles and compute median/quartile cut points with `percentile_cont`.
+  - Deliverable A: `NTILE(4)` quartile assignment for track prices.
+  - Deliverable B: Quartile-level summary stats (count, min, max, average).
+  - Deliverable C: Quartile cut points and median using `percentile_cont`.
+  - Verification: File includes both row-level bucketing and aggregate percentile summaries.
 
 ### D. Window Functions and Analytics - Complete
 
 - [x] D13 - ROW_NUMBER, RANK, DENSE_RANK (`queries/013_rank_window.pgsql`)
-  - Top-selling tracks per genre with tie-aware and tie-breaking rank options.
+  - Deliverable A: Top-selling tracks per genre with `RANK()`.
+  - Deliverable B: Tie-dense variant with `DENSE_RANK()`.
+  - Deliverable C: Deterministic single-row tie-break pattern with `ROW_NUMBER()`.
+  - Verification: File demonstrates ranking behavior differences across all three window functions.
 
 - [x] D14 - LAG and LEAD (`queries/014_lag_lead.pgsql`)
-  - Days between previous and next invoice per customer.
+  - Deliverable A: Previous-invoice lookup and gap calculation using `LAG()`.
+  - Deliverable B: Next-invoice lookup and forward gap calculation using `LEAD()`.
+  - Verification: Results are partitioned by customer and ordered by invoice chronology.
 
 - [x] D15 - Running totals and rolling windows (`queries/015_running_totals.pgsql`)
-  - Running customer spend over invoice chronology.
-  - Rolling 7-day revenue and a lateral-debug view of included rows.
+  - Deliverable A: Running total of spend per customer using windowed `SUM()`.
+  - Deliverable B: Rolling 7-day revenue window over invoice dates.
+  - Deliverable C: `CROSS JOIN LATERAL` diagnostic query showing rows included in each rolling window.
+  - Verification: File includes cumulative, rolling, and window-debug query variants.
 
 - [x] D16 - Windowed percentile measures (`queries/016_window_percentiles.pgsql`)
-  - `PERCENT_RANK` and `CUME_DIST` over invoice totals per customer partition.
+  - Deliverable A: Customer spend percentile ranking using `PERCENT_RANK()` over aggregated customer totals.
+  - Deliverable B: Track-price cumulative distribution using `CUME_DIST()`.
+  - Verification: Query outputs identify top spenders by percentile and show cumulative position across track prices.
 
 ### E. CTEs, Recursive Queries, and Advanced Logic - In Progress
 
 - [x] E17 - Simple CTEs for staging/clarity (`queries/017_standalone_cte.pgsql`)
-  - Build `TrackArtist` CTE (`track`, `album`, `artist`).
-  - Build dependent `ArtistSales` CTE from `invoice_line`.
-  - Return final artist sales ordered descending, with a readability note.
+  - Deliverable A: `TrackArtist` staging CTE over `track`, `album`, and `artist`.
+  - Deliverable B: Dependent `ArtistSales` CTE using line-level sales from `invoice_line`.
+  - Deliverable C: Final artist-sales output ordered by total sales, with explanatory CTE notes retained in-file.
+  - Verification: File contains a complete staged CTE workflow from join staging through final aggregation.
 
 - [x] E18 - Recursive CTE: employee chain (`queries/018_recursive_cte.pgsql`)
-  - Use `WITH RECURSIVE` over `employee.reports_to`.
-  - Output `employee_id`, `reports_to`, `level`, and a readable name/title path.
-  - Include one concrete employee example.
+  - Deliverable A: Recursive employee-chain traversal using `WITH RECURSIVE` and `reports_to`.
+  - Deliverable B: Output fields `employee_id`, `reports_to`, `level`, and concatenated name/title path.
+  - Deliverable C: Example start employee included in anchor member.
+  - Verification: Recursive query returns stepwise hierarchy from selected employee to management chain.
 
 - [ ] E19 - Pivoting and crosstab fallback (`queries/019_pivot.pgsql`)
   - Deliverable A: Monthly revenue pivot for three months using `tablefunc.crosstab` (if extension available).
