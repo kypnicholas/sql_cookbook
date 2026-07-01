@@ -12,7 +12,7 @@
 -- -----------------------------------------------------------------------------
 
 
--- Deliverable A: Pivot using tablefunc.crosstab
+---- Deliverable A: Pivot using tablefunc.crosstab ----
 
 CREATE EXTENSION IF NOT EXISTS tablefunc;
 
@@ -30,6 +30,7 @@ FROM (
         to_char(date_trunc('month', invoice_date), 'YYYY-MM') AS month_label,
         SUM(total)::numeric AS revenue
       FROM invoice
+      -- max(invoice_date) is used to anchor the pivot to the latest invoice month so this works for Chinook
       WHERE invoice_date >= (SELECT date_trunc('month', max(invoice_date)) - INTERVAL '2 months' FROM invoice)
       GROUP BY 1,2
       ORDER BY 1,2
@@ -52,3 +53,16 @@ FROM (
     $$
   ) AS ct(metric text, m1 numeric, m2 numeric, m3 numeric)
 ) t;
+
+
+---- Deliverable B: Pivot using SUM(...) FILTER (WHERE ...) without extension ----
+
+SELECT 
+  SUM(total) FILTER (WHERE to_char(date_trunc('month', invoice_date), 'YYYY-MM') = to_char((SELECT date_trunc('month', max(invoice_date)) - INTERVAL '2 months' FROM invoice), 'YYYY-MM')) AS revenue_m_minus2,
+  SUM(total) FILTER (WHERE to_char(date_trunc('month', invoice_date), 'YYYY-MM') = to_char((SELECT date_trunc('month', max(invoice_date)) - INTERVAL '1 month' FROM invoice), 'YYYY-MM')) AS revenue_m_minus1,
+  SUM(total) FILTER (WHERE to_char(date_trunc('month', invoice_date), 'YYYY-MM') = to_char((SELECT date_trunc('month', max(invoice_date)) FROM invoice), 'YYYY-MM')) AS revenue_m_current
+FROM invoice
+-- max(invoice_date) is used to anchor the pivot to the latest invoice month so this works for Chinook
+WHERE invoice_date >= (SELECT date_trunc('month', max(invoice_date)) - INTERVAL '2 months' FROM invoice);
+
+
