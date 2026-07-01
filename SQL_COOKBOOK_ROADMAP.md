@@ -176,14 +176,12 @@
   - Verification query: duplicate count is zero after cleanup in a test transaction.
 
 - [ ] F21 - Normalize composer into artist mapping (`migrations/021_normalize_composer.sql`, `queries/021_normalize_composer_checks.pgsql`)
-  - Migration: create table artist (artist_id serial primary key, name text unique not null, type text default 'person').
-  - Migration: create junction table track_composer (track_id int references track(track_id), artist_id int references artist(artist_id), primary key (track_id, artist_id)).
+  - Migration: create bridge table track_composer (track_id int references track(track_id), artist_id int references artist(artist_id), primary key (track_id, artist_id)).
   - Backfill using regexp_split_to_table (or string_to_array) to split track.composer into individual names (handle , and & as separators, and trim whitespace).
   - Insert distinct composer names into artist table using ON CONFLICT (name) DO NOTHING.
   - Populate track_composer by mapping each track_id to the corresponding artist_id.
   - Verification:
       - Show sample rows joining track → track_composer → artist (before/after structure comparison).
-      - Count total rows in artist.
       - Count total rows in track_composer.
       - Show number of tracks with more than one composer.
 
