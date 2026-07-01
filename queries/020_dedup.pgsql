@@ -26,3 +26,56 @@ WHERE total_duplicates > 1
 ORDER BY first_name, row_num;
 
 
+
+-- Deliverable B: Delete duplicates while keeping the record with the lowest customer_id.
+-- PROCEED WITH CAUTION. It's recommended to run this in a transaction and verify the results before committing.
+
+BEGIN; 
+SELECT 'Deleting duplicates...' AS action;
+
+-- 1) Preview what will be deleted (keeps the lowest customer_id per first_name, deletes the others)
+WITH ranked AS (
+  SELECT
+    customer_id,
+    first_name,
+    ROW_NUMBER() OVER (
+      PARTITION BY first_name
+      ORDER BY customer_id ASC
+    ) AS rn
+  FROM customer_duplicate
+)
+SELECT
+  customer_id,
+  first_name
+FROM ranked
+WHERE rn > 1
+ORDER BY first_name, customer_id;
+
+-- 2) Delete duplicates (everything with rn > 1)
+WITH ranked AS (
+  SELECT
+    customer_id,
+    ROW_NUMBER() OVER (
+      PARTITION BY first_name
+      ORDER BY customer_id ASC
+    ) AS rn
+  FROM customer_duplicate
+)
+DELETE FROM customer_duplicate cd
+USING ranked r
+WHERE cd.customer_id = r.customer_id
+  AND r.rn > 1;
+
+-- 3) Verify how many rows were removed (optional sanity check)
+--    Compare remaining counts per first_name (should have max one row per first_name)
+SELECT
+  first_name,
+  COUNT(*) AS remaining_rows
+FROM customer_duplicate
+GROUP BY first_name
+HAVING COUNT(*) > 1;
+
+-- If the last query returns 0 rows, you're good.
+-- Then commit; otherwise ROLLBACK.
+-- COMMIT;
+-- ROLLBACK;
