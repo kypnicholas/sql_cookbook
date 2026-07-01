@@ -27,8 +27,8 @@
 | B | Joins and relational queries | Complete |
 | C | Aggregation and grouping analysis | Complete |
 | D | Window functions and analytics | Complete |
-| E | CTEs, recursive queries, and advanced logic | In progress |
-| F | Data transformation and cleaning | Not started |
+| E | CTEs, recursive queries, and advanced logic | Complete |
+| F | Data transformation and cleaning | In Progress |
 | G | Indexing and performance tuning (DBA) | Not started |
 | H | EXPLAIN, profiling, and comparisons | Not started |
 | I | Materialized views, caching, and pre-aggregation | Not started |
@@ -149,7 +149,7 @@
   - Deliverable B: Track-price cumulative distribution using `CUME_DIST()`.
   - Verification: Query outputs identify top spenders by percentile and show cumulative position across track prices.
 
-### E. CTEs, Recursive Queries, and Advanced Logic - In Progress
+### E. CTEs, Recursive Queries, and Advanced Logic - Complete
 
 - [x] E17 - Simple CTEs for staging/clarity (`queries/017_standalone_cte.pgsql`)
   - Deliverable A: `TrackArtist` staging CTE over `track`, `album`, and `artist`.
@@ -163,12 +163,12 @@
   - Deliverable C: Example start employee included in anchor member.
   - Verification: Recursive query returns stepwise hierarchy from selected employee to management chain.
 
-- [ ] E19 - Pivoting and crosstab fallback (`queries/019_pivot.pgsql`)
+- [x] E19 - Pivoting and crosstab fallback (`queries/019_pivot.pgsql`)
   - Deliverable A: Monthly revenue pivot for three months using `tablefunc.crosstab` (if extension available).
   - Deliverable B: Equivalent pivot using `SUM(...) FILTER (WHERE ...)` without extension.
   - Verification: both approaches return same month columns and same totals.
 
-### F. Data Transformation and Cleaning - Not Started
+### F. Data Transformation and Cleaning - In Progress
 
 - [ ] F20 - Deduplication patterns (`queries/020_dedup.pgsql`)
   - Identify duplicate customers by (`first_name`, `last_name`, `email`) using `ROW_NUMBER()`.
