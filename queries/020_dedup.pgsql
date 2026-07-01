@@ -33,7 +33,8 @@ ORDER BY first_name, row_num;
 BEGIN; 
 SELECT 'Deleting duplicates...' AS action;
 
--- 1) Preview what will be deleted (keeps the lowest customer_id per first_name, deletes the others)
+-- 1) PREVIEW ONLY step to identify duplicates. 
+--    The same logic is repeated below to delete customers. 
 WITH ranked AS (
   SELECT
     customer_id,
@@ -51,7 +52,8 @@ FROM ranked
 WHERE rn > 1
 ORDER BY first_name, customer_id;
 
--- 2) Delete duplicates (everything with rn > 1)
+-- 2) Delete duplicates (everything with rn > 1). 
+--    The selection of customers is repeated here to ensure the delete is based on the same logic as the preview.
 WITH ranked AS (
   SELECT
     customer_id,
@@ -66,7 +68,7 @@ USING ranked r
 WHERE cd.customer_id = r.customer_id
   AND r.rn > 1;
 
--- 3) Verify how many rows were removed (optional sanity check)
+-- 3) Verify how many rows were removed.
 --    Compare remaining counts per first_name (should have max one row per first_name)
 SELECT
   first_name,
