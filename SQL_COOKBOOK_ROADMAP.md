@@ -21,27 +21,29 @@
 
 ## Legend: Topics and Progress
 
-| Section | Topic | Status |
-|---|---|---|
-| A | Basic queries (fundamentals) | Complete |
-| B | Joins and relational queries | Complete |
-| C | Aggregation and grouping analysis | Complete |
-| D | Window functions and analytics | Complete |
-| E | CTEs, recursive queries, and advanced logic | Complete |
-| F | Data transformation and cleaning | In Progress |
-| G | Indexing and performance tuning (DBA) | Not started |
-| H | EXPLAIN, profiling, and comparisons | Not started |
-| I | Materialized views, caching, and pre-aggregation | Not started |
-| J | Transactions, concurrency, and safe migrations | Not started |
-| K | Schema design, normalization, and refactoring | Not started |
-| L | Security, roles, and row-level policies | Not started |
-| M | Backup, restore, and migration exercises | Not started |
-| N | Monitoring, observability, and health checks | Not started |
-| O | Extensions and advanced Postgres features | Not started |
-| P | Stored procedures, triggers, and auditing | Not started |
-| Q | Concurrency, load, and capacity planning | Not started |
-| R | Data lineage, documentation, and tests | Not started |
-| X | Optional extras and polish | Not started |
+
+| Section | Topic                                            | Progress       |
+| ------- | ------------------------------------------------ | -------------- |
+| A       | Basic queries (fundamentals)                     | **100% (4/4)** |
+| B       | Joins and relational queries                     | **100% (4/4)** |
+| C       | Aggregation and grouping analysis                | **100% (4/4)** |
+| D       | Window functions and analytics                   | **100% (4/4)** |
+| E       | CTEs, recursive queries, and advanced logic      | **100% (3/3)** |
+| F       | Data transformation and cleaning                 | **67% (2/3)**  |
+| G       | Indexing and performance tuning (DBA)            | **0% (0/4)**   |
+| H       | EXPLAIN, profiling, and comparisons              | **0% (0/3)**   |
+| I       | Materialized views, caching, and pre-aggregation | **0% (0/2)**   |
+| J       | Transactions, concurrency, and safe migrations   | **0% (0/3)**   |
+| K       | Schema design, normalization, and refactoring    | **0% (0/2)**   |
+| L       | Security, roles, and row-level policies          | **0% (0/2)**   |
+| M       | Backup, restore, and migration exercises         | **0% (0/2)**   |
+| N       | Monitoring, observability, and health checks     | **0% (0/2)**   |
+| O       | Extensions and advanced Postgres features        | **0% (0/3)**   |
+| P       | Stored procedures, triggers, and auditing        | **0% (0/2)**   |
+| Q       | Concurrency, load, and capacity planning         | **0% (0/2)**   |
+| R       | Data lineage, documentation, and tests           | **0% (0/4)**   |
+| X       | Optional extras and polish                       | **0% (0/3)**   |
+
 
 ---
 
