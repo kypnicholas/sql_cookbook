@@ -175,7 +175,7 @@
   - Provide a safe delete plan that keeps the lowest `customer_id`.
   - Verification query: duplicate count is zero after cleanup in a test transaction.
 
-- [ ] F21 - Normalize composer into artist mapping (`migrations/021_normalize_composer.sql`, `queries/021_normalize_composer_checks.pgsql`)
+- [x] F21 - Normalize composer into artist mapping (`migrations/021_normalize_composer.sql`, `queries/021_normalize_composer_checks.pgsql`)
   - Migration: create bridge table track_composer (track_id int references track(track_id), artist_id int references artist(artist_id), primary key (track_id, artist_id)).
   - Backfill using regexp_split_to_table (or string_to_array) to split track.composer into individual names (handle , and & as separators, and trim whitespace).
   - Insert distinct composer names into artist table using ON CONFLICT (name) DO NOTHING.
