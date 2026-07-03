@@ -28,12 +28,12 @@ all_customers AS (
 )
 SELECT c.*
 FROM all_customers c
-LEFT JOIN invoice i
-    ON i.customer_id = c.customer_id
+LEFT JOIN invoice i ON i.customer_id = c.customer_id
 WHERE i.customer_id IS NULL;
 
 
 -- Get list of customers with their total spend, using COALESCE to replace NULL invoice totals with 0. This ensures that customers with no invoices are still included in the result set with a total spend of 0.
+-- COALESCE(SUM(i.total), 0) ==>> "Evaluate SUM(i.total). If the result is NULL, return 0 instead."
 SELECT 
     c.customer_id,
     concat(c.first_name, ' ', c.last_name) AS customer_name,
