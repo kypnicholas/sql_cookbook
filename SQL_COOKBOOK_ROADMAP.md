@@ -29,7 +29,7 @@
 | C       | Aggregation and grouping analysis                | **100% (4/4)** |
 | D       | Window functions and analytics                   | **100% (4/4)** |
 | E       | CTEs, recursive queries, and advanced logic      | **100% (3/3)** |
-| F       | Data transformation and cleaning                 | **67% (2/3)**  |
+| F       | Data transformation and cleaning                 | **100% (3/3)** |
 | G       | Indexing and performance tuning (DBA)            | **0% (0/4)**   |
 | H       | EXPLAIN, profiling, and comparisons              | **0% (0/3)**   |
 | I       | Materialized views, caching, and pre-aggregation | **0% (0/2)**   |
@@ -44,6 +44,7 @@
 | R       | Data lineage, documentation, and tests           | **0% (0/4)**   |
 | X       | Optional extras and polish                       | **0% (0/3)**   |
 
+Overall progress: **~39% complete** (22/56 tasks done).
 
 ---
 
@@ -170,7 +171,7 @@
   - Deliverable B: Equivalent pivot using `SUM(...) FILTER (WHERE ...)` without extension.
   - Verification: both approaches return same month columns and same totals.
 
-### F. Data Transformation and Cleaning - In Progress
+### F. Data Transformation and Cleaning - Complete
 
 - [x] F20 - Deduplication patterns (`queries/020_dedup.pgsql`)
   - Identify duplicate customers by (`first_name`, `last_name`, `email`) using `ROW_NUMBER()`.
@@ -187,12 +188,12 @@
       - Count total rows in track_composer.
       - Show number of tracks with more than one composer.
 
-- [ ] F22 - NULL handling and derived spend values (`queries/022_null_handling.pgsql`)
+- [x] F22 - NULL handling and derived spend values (`queries/022_null_handling.pgsql`)
   - Build a query/view that computes customer spend with `COALESCE` when no invoices exist.
   - Optional path: add and maintain a physical `customer.total_spent` column.
   - Verification: customers without invoices resolve to 0, never NULL.
 
-### G. Indexing and Performance Tuning (DBA) - Not Started
+### G. Indexing and Performance Tuning (DBA) - In Progress
 
 - [ ] G23 - Targeted indexes and benchmark (`migrations/023_create_indexes.sql`, `analysis/023_index_benchmark.md`)
   - Create indexes on `invoice(invoice_date)` and `invoice_line(track_id)`.
