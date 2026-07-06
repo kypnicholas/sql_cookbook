@@ -195,7 +195,7 @@ Overall progress: **~39% complete** (22/56 tasks done).
 
 ### G. Indexing and Performance Tuning (DBA) - In Progress
 
-- [ ] G23 - Targeted indexes and benchmark (`migrations/023_create_indexes.sql`, `analysis/023_index_benchmark.md`)
+- [ ] G23 - Targeted indexes and benchmark (`migrations/023_create_indexes.sql`, `analysis/023_index_benchmark.md`,`queries/023_index_benchmark_check.pgsql`)
   - Create indexes on `invoice(invoice_date)` and `invoice_line(track_id)`.
   - Capture `EXPLAIN (ANALYZE, BUFFERS)` before and after for one filter query.
   - Record runtime and buffer differences.
