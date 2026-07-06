@@ -17,8 +17,24 @@ LIMIT 1;
 
 EXPLAIN (ANALYZE, BUFFERS, VERBOSE)
 SELECT SUM(total) as total_invoice_amount FROM invoice
-WHERE invoice_date >= '2010-01-01' AND invoice_date < '2011-01-01';
+WHERE invoice_date::date >= '2021-01-01'::date
+  AND invoice_date::date <  '2022-01-01'::date;
 
 
+-- Query B: Point lookup on invoice_line(track_id) index.
+-- Find all invoice lines for a specific track_id to demonstrate the effect of the index on point lookups.
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE)
+SELECT * FROM invoice_line
+WHERE track_id = 1831
+LIMIT 100;
 
-
+-- QUERY C: Join query to demonstrate the effect of indexes on join performance.
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE)
+SELECT i.invoice_id, i.invoice_date, il.track_id, il.unit_price, il.quantity
+FROM invoice i
+JOIN invoice_line il ON i.invoice_id = il.invoice_id
+WHERE invoice_date::date >= '2021-01-01'::date
+  AND invoice_date::date <  '2022-01-01'::date
+  AND il.track_id = 1831
+ORDER BY i.invoice_date DESC
+LIMIT 100;
