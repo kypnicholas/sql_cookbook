@@ -1,7 +1,7 @@
 # G23 Benchmark Notes
 
 ## Goal
-Measure whether the targeted indexes improve the benchmark queries in `queries/023_index_benchmark_check.pgsql`.
+Measure whether the targeted indexes improve the benchmark queries in `queries/023_targeted_index_benchmark_check.pgsql`.
 
 ## In order of execution
 1. Found a representative `track_id` from `invoice_line`.
@@ -18,7 +18,7 @@ Measure whether the targeted indexes improve the benchmark queries in `queries/0
 
 3. Ran Query B and Query C after the index work to confirm the `track_id` index path was active.
 
-4. Re-ran Query A after applying the date expression index so I could compare the same query before and after.
+4. Re-ran Query A after applying an index on `invoice_date` so I could compare the same query before and after.
 
 ## Query A before index
 This was the baseline plan for the date-range aggregate on `invoice`.

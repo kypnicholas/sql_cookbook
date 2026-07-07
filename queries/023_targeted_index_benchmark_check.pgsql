@@ -6,6 +6,12 @@
 -- Verification: Record runtime and buffer differences to demonstrate performance improvement.
 -- -----------------------------------------------------------------------------
 
+-- Targeted index defintion: 
+
+-- Targeted index is the standard column index and is used to improve query performance for specific columns 
+-- that are frequently used in WHERE clauses or JOIN conditions. 
+-- -----------------------------------------------------------------------------
+
 -- Find a sample track_id to test index selectively
 SELECT track_id, count(*) AS invoice_count from invoice_line
 GROUP BY track_id
