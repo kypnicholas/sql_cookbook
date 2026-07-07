@@ -200,12 +200,12 @@ Overall progress: **~39% complete** (22/56 tasks done).
   - Capture `EXPLAIN (ANALYZE, BUFFERS)` before and after for one filter query.
   - Record runtime and buffer differences.
 
-- [ ] G24 - Expression index casting invoice_date to date (`migrations/024_create_expr_index.sql`, `queries/024_expr_index_check.pgsql`)
+- [X] G24 - Expression index casting invoice_date to date (`migrations/024_create_expr_index.sql`, `queries/024_expr_index_check.pgsql`)
   - Create an expression index on `invoice(invoice_date::date)` to improve query performance for date range filters.
   - Run a representative query filtering on `invoice_date::date` and capture `EXPLAIN (ANALYZE, BUFFERS)` before and after index creation.
   - Verification: Record runtime and buffer differences to demonstrate performance improvement.
 
-- [ ] G25 - Partial index (`migrations/025_create_partial_index.sql`, `queries/025_partial_index_check.pgsql`)
+- [X] G25 - Partial index (`migrations/025_create_partial_index.sql`, `queries/025_partial_index_check.pgsql`)
   - Create partial index on `invoice(invoice_date)` where `total > 100`.
   - Run a matching query and verify planner chooses the partial index.
 
