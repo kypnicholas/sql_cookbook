@@ -193,7 +193,7 @@ Overall progress: **~39% complete** (22/56 tasks done).
   - Optional path: add and maintain a physical `customer.total_spent` column.
   - Verification: customers without invoices resolve to 0, never NULL.
 
-### G. Indexing and Performance Tuning (DBA) - In Progress
+### G. Indexing and Performance Tuning (DBA) -  Complete
 
 - [X] G23 - Targeted indexes and benchmark (`migrations/023_create_targeted_indexes.sql`, `analysis/023_targeted_index_benchmark.md`,`queries/023_targeted_index_benchmark_check.pgsql`)
   - Create indexes on `invoice(invoice_date)` and `invoice_line(track_id)`.
@@ -209,11 +209,11 @@ Overall progress: **~39% complete** (22/56 tasks done).
   - Create partial index on `invoice(invoice_date)` where `total > 100`.
   - Run a matching query and verify planner chooses the partial index.
 
-- [ ] G26 - Functional date bucket index (`migrations/026_create_functional_index.sql`, `queries/026_functional_index_check.pgsql`)
+- [X] G26 - Functional date bucket index (`migrations/026_create_functional_index.sql`, `queries/026_functional_index_check.pgsql`)
   - Index `date_trunc('month', invoice_date)` expression.
   - Validate month-bucket reporting query and inspect plan impact.
 
-### H. EXPLAIN, Profiling, and Comparisons - Not Started
+### H. EXPLAIN, Profiling, and Comparisons - In Progress
 
 - [ ] H27 - Before/after plan annotation (`analysis/027_explain_before.sql`, `analysis/027_explain_after.sql`, `analysis/027_explain_notes.md`)
   - Pick one slow join-heavy sales query.
