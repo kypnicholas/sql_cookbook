@@ -6,3 +6,11 @@
 -- Verification: Record runtime and buffer differences to demonstrate performance improvement.
 -- -----------------------------------------------------------------------------
 
+-- Baseline for invoice(invoice_date::date) index.
+-- Invoice_date filter and AGGREGATE
+EXPLAIN (ANALYZE, BUFFERS, VERBOSE)
+SELECT SUM(total) as total_invoice_amount FROM invoice
+WHERE invoice_date::date >= '2021-01-01'::date
+  AND invoice_date::date <  '2022-01-01'::date;
+
+
