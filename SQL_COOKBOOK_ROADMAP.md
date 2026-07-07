@@ -195,20 +195,20 @@ Overall progress: **~39% complete** (22/56 tasks done).
 
 ### G. Indexing and Performance Tuning (DBA) - In Progress
 
-- [ ] G23 - Targeted indexes and benchmark (`migrations/023_create_indexes.sql`, `analysis/023_index_benchmark.md`,`queries/023_index_benchmark_check.pgsql`)
+- [X] G23 - Targeted indexes and benchmark (`migrations/023_create_targeted_indexes.sql`, `analysis/023_targeted_index_benchmark.md`,`queries/023_targeted_index_benchmark_check.pgsql`)
   - Create indexes on `invoice(invoice_date)` and `invoice_line(track_id)`.
   - Capture `EXPLAIN (ANALYZE, BUFFERS)` before and after for one filter query.
   - Record runtime and buffer differences.
 
-- [ ] G24 - Expression index (`migrations/024_expr_index.sql`, `queries/024_expr_index_check.pgsql`)
+- [ ] G24 - Expression index (`migrations/024_create_expr_index.sql`, `queries/024_expr_index_check.pgsql`)
   - Create `LOWER(customer.email)` index.
   - Run a case-insensitive email lookup and show index usage in plan.
 
-- [ ] G25 - Partial index (`migrations/025_partial_index.sql`, `queries/025_partial_index_check.pgsql`)
+- [ ] G25 - Partial index (`migrations/025_create_partial_index.sql`, `queries/025_partial_index_check.pgsql`)
   - Create partial index on `invoice(invoice_date)` where `total > 100`.
   - Run a matching query and verify planner chooses the partial index.
 
-- [ ] G26 - Functional date bucket index (`migrations/026_functional_index.sql`, `queries/026_functional_index_check.pgsql`)
+- [ ] G26 - Functional date bucket index (`migrations/026_create_functional_index.sql`, `queries/026_functional_index_check.pgsql`)
   - Index `date_trunc('month', invoice_date)` expression.
   - Validate month-bucket reporting query and inspect plan impact.
 
