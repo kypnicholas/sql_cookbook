@@ -4,6 +4,8 @@
 
 Case study: “before” vs “after” for a Top‑N revenue query in Supabase/Postgres.
 
+**Note**: node‑level annotated comparison at the bottom of this file focuses on the **biggest time nodes** in the plan. It is not a full node‑by‑node comparison.
+
 ---
 
 ## 0) What changed in the SQL?
@@ -221,6 +223,46 @@ Stripping an unnecessary join removes join‑tree operations and reduces CPU ove
 3. **Same high‑level pipeline** (`Join` → `Hash Agg` → `Top‑N Sort` → `Limit`)
 
 ---
+---
+
+## 027 - Node-level annotated comparison (biggest time nodes only)
+
+### Query
+Top-N revenue by `(artist, genre)` with `LIMIT 10` over the last `100 years`.
+
+### Summary delta
+- **Execution Time:** `7.355 ms (before)` → `6.776 ms (after)`
+- **Improvement:** `-0.579 ms` (≈ **-7.87%**)
+
+Primary reason indicated by the structural change: the *removed* `customer` join subtree reduces join-tree/operator overhead, while the rest of the pipeline (hash aggregation + top-N sort + limit) remains essentially the same.
+
+---
+
+### Node-level comparison (biggest time nodes)
+
+| Node (level) | Before (Actual Total Time) | After (Actual Total Time) | Takeaway |
+|---|---:|---:|---|
+| `Limit` (top node) | **7.055 ms** | **6.528 ms** | The overall time is reduced. Since `Limit` wraps the whole subtree, the speedup must come from improvements inside the join → aggregate → sort pipeline. |
+| `Aggregate` (Hashed) | **6.96 ms** | **6.438 ms** | Hash aggregation itself is slightly faster after optimization. No spill indicators are present (`HashAgg Batches = 1`, `Disk Usage = 0`). |
+| `Sort` (top-N heapsort) | **7.052 ms** | **6.525 ms** | Sort is still using `top-N heapsort` and stays bounded by `LIMIT`. `Sort Space Type = Memory`, `Sort Space Used ~26` (no spill). |
+| Join subtree (upper join chain near root) | **~5.543 ms** (hash join total) | **~4.974 ms** (hash join total) | The upper join chain time decreases after optimization, consistent with fewer/cheaper join operations in the executor. |
+| `invoice_line ↔ invoice` join section | **~1.809 ms** | **~1.295 ms** | The join work in the portion involving `invoice_line` and the date-filtered `invoice` side is faster after the change. |
+| Hash build from `track` | **0.527 ms** | **0.538 ms** | Track scan/build work is roughly the same; the delta is more about join-tree overhead/tuple processing than this single input scan. |
+
+---
+
+### Plain takeaways
+
+- **Biggest time is inside the same pipeline:** join-tree work feeds into **Hash Aggregate** and then **top-N Sort** (followed by `Limit`).
+- **No spill / no temp I/O bottleneck:**  
+  - `HashAgg Batches = 1`, `Disk Usage = 0`  
+  - `Sort Space Type = Memory` and no temp read/write blocks  
+  → the speedup is **not** from reducing disk/memory spills.
+- **The join-tree got cheaper:**  
+  - The **upper hash join / join chain** shows a meaningful time reduction (`~5.543 ms → ~4.974 ms`).
+  - This aligns with the structural query change (removing the `customer` join subtree).
+- **Final cardinality is similar:** grouped results still end up with the same order of magnitude, but **operator cost** decreases (less join overhead / fewer intermediate tuples processed), resulting in the reduced total runtime.
+
 
 ***
 
