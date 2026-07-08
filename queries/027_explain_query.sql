@@ -13,9 +13,9 @@ Deep, node‑by‑node EXPLAIN annotation — explain why the planner changed, w
 
 High-level steps:
 1. Pick one slow, join‑heavy sales query. [Save to queries/027_explain_query.sql]
-2. Capture a clean baseline EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON + readable text). Save to analysis/027_explain_before.json.
-3. Pick one targeted optimization (index, rewrite, materialized view). Implement it.
-4. Re-run VACUUM/ANALYZE, capture after EXPLAIN and save to analysis/027_explain_after.json.
+2. Capture a clean baseline EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON + readable text). [Save to analysis/027_explain_before.json]
+3. Pick one targeted optimization (index, rewrite, materialized view). Implement it. [Save to migration/027_create_index.sql]
+4. Re-run VACUUM/ANALYZE, capture after EXPLAIN. [Save to analysis/027_explain_after.json]
 5. Produce node‑level annotated comparison in analysis/027_explain_notes.md (table + plain takeaways).
 6. (Optional) repeat cold/warm runs, add artifacts/screenshots.
 
@@ -69,3 +69,10 @@ SHOW enable_hashjoin;
 SHOW enable_nestloop;
 SHOW enable_mergejoin;
 SHOW enable_sort;
+
+
+
+
+-- 3) Apply a targeted optimization (index, rewrite, materialized view) to improve the query performance.
+-- In this case we choose to apply an index because of the many Seq Scan / large scans on join tables we discovered in the EXPLAIN output. 
+-- The index will be created on the invoice_date column of the invoice table to speed up the filtering condition in the WHERE clause.

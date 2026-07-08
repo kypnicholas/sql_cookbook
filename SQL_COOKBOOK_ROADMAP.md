@@ -215,7 +215,7 @@ Overall progress: **~46% complete** (26/56 tasks done).
 
 ### H. EXPLAIN, Profiling, and Comparisons - In Progress
 
-- [ ] H27 - Before/after plan annotation (`analysis/027_explain_before.sql`, `analysis/027_explain_after.sql`, `analysis/027_explain_notes.md`)
+- [ ] H27 - Before/after plan annotation (`queries/027_explain_query.sql`, `analysis/027_explain_before.json`, `analysis/027_explain_after.json`, `analysis/027_explain_notes.md`, `migrations/027_create_index.sql`)
   - Pick one slow join-heavy sales query.
   - Save before and after plans around one optimization.
   - Annotate node-level differences (join type, scan type, cost/time/buffers).
