@@ -705,7 +705,29 @@
       "Triggers": [],
       "Execution Time": 7.355
     }
-  ]
+  ],
+  "query_performance_summary": {
+    "execution_time_ms": 7.355,
+    "top_level_operation": "Limit + Sort (top-N heapsort)",
+    "primary_join_mechanism": "Deep chain of Hash Joins (including one LEFT join for genre)",
+    "scan_hotspots": {
+      "description": "multiple Seq Scans, especially",
+      "details": [
+        {
+          "table": "invoice_line",
+          "scan_type": "Seq Scan",
+          "rows_handled": 2240
+        },
+        {
+          "table": "track",
+          "scan_type": "Seq Scan",
+          "rows_handled": 3503
+        }
+      ]
+    },
+    "buffer_usage": {
+      "status": "All Hit blocks (0 reads)",
+      "notes": "The entire dataset was already cached in memory during execution."
+    }
+  }
 }
-
-
