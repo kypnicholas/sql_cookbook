@@ -1,17 +1,16 @@
 {
-  "_comment": "Output of EXPLAIN (ANALYZE, BUFFERS, VERBOSE) for the query in `queries/027_explain_query.pgsql`",
   "explain": [
     {
       "Plan": {
         "Node Type": "Limit",
         "Parallel Aware": false,
         "Async Capable": false,
-        "Startup Cost": 364.22,
-        "Total Cost": 364.24,
+        "Startup Cost": 354.59,
+        "Total Cost": 354.61,
         "Plan Rows": 10,
         "Plan Width": 319,
-        "Actual Startup Time": 7.047,
-        "Actual Total Time": 7.055,
+        "Actual Startup Time": 6.52,
+        "Actual Total Time": 6.528,
         "Actual Rows": 10,
         "Actual Loops": 1,
         "Output": [
@@ -20,7 +19,7 @@
           "(sum((il.unit_price * (il.quantity)::numeric)))",
           "(count(*))"
         ],
-        "Shared Hit Blocks": 77,
+        "Shared Hit Blocks": 75,
         "Shared Read Blocks": 0,
         "Shared Dirtied Blocks": 0,
         "Shared Written Blocks": 0,
@@ -36,12 +35,12 @@
             "Parent Relationship": "Outer",
             "Parallel Aware": false,
             "Async Capable": false,
-            "Startup Cost": 364.22,
-            "Total Cost": 369.82,
+            "Startup Cost": 354.59,
+            "Total Cost": 360.19,
             "Plan Rows": 2240,
             "Plan Width": 319,
-            "Actual Startup Time": 7.046,
-            "Actual Total Time": 7.052,
+            "Actual Startup Time": 6.519,
+            "Actual Total Time": 6.525,
             "Actual Rows": 10,
             "Actual Loops": 1,
             "Output": [
@@ -56,7 +55,7 @@
             "Sort Method": "top-N heapsort",
             "Sort Space Used": 26,
             "Sort Space Type": "Memory",
-            "Shared Hit Blocks": 77,
+            "Shared Hit Blocks": 75,
             "Shared Read Blocks": 0,
             "Shared Dirtied Blocks": 0,
             "Shared Written Blocks": 0,
@@ -74,12 +73,12 @@
                 "Parent Relationship": "Outer",
                 "Parallel Aware": false,
                 "Async Capable": false,
-                "Startup Cost": 287.81,
-                "Total Cost": 315.81,
+                "Startup Cost": 278.18,
+                "Total Cost": 306.18,
                 "Plan Rows": 2240,
                 "Plan Width": 319,
-                "Actual Startup Time": 6.874,
-                "Actual Total Time": 6.96,
+                "Actual Startup Time": 6.35,
+                "Actual Total Time": 6.438,
                 "Actual Rows": 194,
                 "Actual Loops": 1,
                 "Output": [
@@ -96,7 +95,7 @@
                 "HashAgg Batches": 1,
                 "Peak Memory Usage": 241,
                 "Disk Usage": 0,
-                "Shared Hit Blocks": 74,
+                "Shared Hit Blocks": 72,
                 "Shared Read Blocks": 0,
                 "Shared Dirtied Blocks": 0,
                 "Shared Written Blocks": 0,
@@ -113,12 +112,12 @@
                     "Parallel Aware": false,
                     "Async Capable": false,
                     "Join Type": "Left",
-                    "Startup Cost": 180.8,
-                    "Total Cost": 254.21,
+                    "Startup Cost": 177.47,
+                    "Total Cost": 244.58,
                     "Plan Rows": 2240,
                     "Plan Width": 288,
-                    "Actual Startup Time": 1.795,
-                    "Actual Total Time": 5.543,
+                    "Actual Startup Time": 1.77,
+                    "Actual Total Time": 4.974,
                     "Actual Rows": 2240,
                     "Actual Loops": 1,
                     "Output": [
@@ -129,7 +128,7 @@
                     ],
                     "Inner Unique": true,
                     "Hash Cond": "(t.genre_id = g.genre_id)",
-                    "Shared Hit Blocks": 74,
+                    "Shared Hit Blocks": 72,
                     "Shared Read Blocks": 0,
                     "Shared Dirtied Blocks": 0,
                     "Shared Written Blocks": 0,
@@ -146,12 +145,12 @@
                         "Parallel Aware": false,
                         "Async Capable": false,
                         "Join Type": "Inner",
-                        "Startup Cost": 164.5,
-                        "Total Cost": 231.95,
+                        "Startup Cost": 161.17,
+                        "Total Cost": 222.32,
                         "Plan Rows": 2240,
                         "Plan Width": 34,
-                        "Actual Startup Time": 1.751,
-                        "Actual Total Time": 4.972,
+                        "Actual Startup Time": 1.737,
+                        "Actual Total Time": 4.453,
                         "Actual Rows": 2240,
                         "Actual Loops": 1,
                         "Output": [
@@ -162,7 +161,7 @@
                         ],
                         "Inner Unique": true,
                         "Hash Cond": "(a.artist_id = ar.artist_id)",
-                        "Shared Hit Blocks": 73,
+                        "Shared Hit Blocks": 71,
                         "Shared Read Blocks": 0,
                         "Shared Dirtied Blocks": 0,
                         "Shared Written Blocks": 0,
@@ -179,12 +178,12 @@
                             "Parallel Aware": false,
                             "Async Capable": false,
                             "Join Type": "Inner",
-                            "Startup Cost": 156.31,
-                            "Total Cost": 217.79,
+                            "Startup Cost": 152.99,
+                            "Total Cost": 208.16,
                             "Plan Rows": 2240,
                             "Plan Width": 17,
-                            "Actual Startup Time": 1.609,
-                            "Actual Total Time": 4.27,
+                            "Actual Startup Time": 1.614,
+                            "Actual Total Time": 3.824,
                             "Actual Rows": 2240,
                             "Actual Loops": 1,
                             "Output": [
@@ -195,7 +194,7 @@
                             ],
                             "Inner Unique": true,
                             "Hash Cond": "(t.album_id = a.album_id)",
-                            "Shared Hit Blocks": 71,
+                            "Shared Hit Blocks": 69,
                             "Shared Read Blocks": 0,
                             "Shared Dirtied Blocks": 0,
                             "Shared Written Blocks": 0,
@@ -212,12 +211,12 @@
                                 "Parallel Aware": false,
                                 "Async Capable": false,
                                 "Join Type": "Inner",
-                                "Startup Cost": 145.5,
-                                "Total Cost": 201.03,
+                                "Startup Cost": 142.18,
+                                "Total Cost": 191.4,
                                 "Plan Rows": 2240,
                                 "Plan Width": 17,
-                                "Actual Startup Time": 1.477,
-                                "Actual Total Time": 3.615,
+                                "Actual Startup Time": 1.46,
+                                "Actual Total Time": 3.142,
                                 "Actual Rows": 2240,
                                 "Actual Loops": 1,
                                 "Output": [
@@ -228,7 +227,7 @@
                                 ],
                                 "Inner Unique": true,
                                 "Hash Cond": "(il.track_id = t.track_id)",
-                                "Shared Hit Blocks": 68,
+                                "Shared Hit Blocks": 66,
                                 "Shared Read Blocks": 0,
                                 "Shared Dirtied Blocks": 0,
                                 "Shared Written Blocks": 0,
@@ -245,12 +244,12 @@
                                     "Parallel Aware": false,
                                     "Async Capable": false,
                                     "Join Type": "Inner",
-                                    "Startup Cost": 21.69,
-                                    "Total Cost": 71.33,
+                                    "Startup Cost": 18.36,
+                                    "Total Cost": 61.7,
                                     "Plan Rows": 2240,
                                     "Plan Width": 13,
-                                    "Actual Startup Time": 0.296,
-                                    "Actual Total Time": 1.809,
+                                    "Actual Startup Time": 0.28,
+                                    "Actual Total Time": 1.295,
                                     "Actual Rows": 2240,
                                     "Actual Loops": 1,
                                     "Output": [
@@ -259,8 +258,8 @@
                                       "il.track_id"
                                     ],
                                     "Inner Unique": true,
-                                    "Hash Cond": "(i.customer_id = c.customer_id)",
-                                    "Shared Hit Blocks": 23,
+                                    "Hash Cond": "(il.invoice_id = i.invoice_id)",
+                                    "Shared Hit Blocks": 21,
                                     "Shared Read Blocks": 0,
                                     "Shared Dirtied Blocks": 0,
                                     "Shared Written Blocks": 0,
@@ -272,28 +271,29 @@
                                     "Temp Written Blocks": 0,
                                     "Plans": [
                                       {
-                                        "Node Type": "Hash Join",
+                                        "Node Type": "Seq Scan",
                                         "Parent Relationship": "Outer",
                                         "Parallel Aware": false,
                                         "Async Capable": false,
-                                        "Join Type": "Inner",
-                                        "Startup Cost": 18.36,
-                                        "Total Cost": 61.7,
+                                        "Relation Name": "invoice_line",
+                                        "Schema": "public",
+                                        "Alias": "il",
+                                        "Startup Cost": 0,
+                                        "Total Cost": 37.4,
                                         "Plan Rows": 2240,
                                         "Plan Width": 17,
-                                        "Actual Startup Time": 0.251,
-                                        "Actual Total Time": 1.274,
+                                        "Actual Startup Time": 0.008,
+                                        "Actual Total Time": 0.234,
                                         "Actual Rows": 2240,
                                         "Actual Loops": 1,
                                         "Output": [
-                                          "il.unit_price",
-                                          "il.quantity",
+                                          "il.invoice_line_id",
+                                          "il.invoice_id",
                                           "il.track_id",
-                                          "i.customer_id"
+                                          "il.unit_price",
+                                          "il.quantity"
                                         ],
-                                        "Inner Unique": true,
-                                        "Hash Cond": "(il.invoice_id = i.invoice_id)",
-                                        "Shared Hit Blocks": 21,
+                                        "Shared Hit Blocks": 15,
                                         "Shared Read Blocks": 0,
                                         "Shared Dirtied Blocks": 0,
                                         "Shared Written Blocks": 0,
@@ -302,134 +302,30 @@
                                         "Local Dirtied Blocks": 0,
                                         "Local Written Blocks": 0,
                                         "Temp Read Blocks": 0,
-                                        "Temp Written Blocks": 0,
-                                        "Plans": [
-                                          {
-                                            "Node Type": "Seq Scan",
-                                            "Parent Relationship": "Outer",
-                                            "Parallel Aware": false,
-                                            "Async Capable": false,
-                                            "Relation Name": "invoice_line",
-                                            "Schema": "public",
-                                            "Alias": "il",
-                                            "Startup Cost": 0,
-                                            "Total Cost": 37.4,
-                                            "Plan Rows": 2240,
-                                            "Plan Width": 17,
-                                            "Actual Startup Time": 0.01,
-                                            "Actual Total Time": 0.235,
-                                            "Actual Rows": 2240,
-                                            "Actual Loops": 1,
-                                            "Output": [
-                                              "il.invoice_line_id",
-                                              "il.invoice_id",
-                                              "il.track_id",
-                                              "il.unit_price",
-                                              "il.quantity"
-                                            ],
-                                            "Shared Hit Blocks": 15,
-                                            "Shared Read Blocks": 0,
-                                            "Shared Dirtied Blocks": 0,
-                                            "Shared Written Blocks": 0,
-                                            "Local Hit Blocks": 0,
-                                            "Local Read Blocks": 0,
-                                            "Local Dirtied Blocks": 0,
-                                            "Local Written Blocks": 0,
-                                            "Temp Read Blocks": 0,
-                                            "Temp Written Blocks": 0
-                                          },
-                                          {
-                                            "Node Type": "Hash",
-                                            "Parent Relationship": "Inner",
-                                            "Parallel Aware": false,
-                                            "Async Capable": false,
-                                            "Startup Cost": 13.21,
-                                            "Total Cost": 13.21,
-                                            "Plan Rows": 412,
-                                            "Plan Width": 8,
-                                            "Actual Startup Time": 0.228,
-                                            "Actual Total Time": 0.229,
-                                            "Actual Rows": 412,
-                                            "Actual Loops": 1,
-                                            "Output": [
-                                              "i.invoice_id",
-                                              "i.customer_id"
-                                            ],
-                                            "Hash Buckets": 1024,
-                                            "Original Hash Buckets": 1024,
-                                            "Hash Batches": 1,
-                                            "Original Hash Batches": 1,
-                                            "Peak Memory Usage": 25,
-                                            "Shared Hit Blocks": 6,
-                                            "Shared Read Blocks": 0,
-                                            "Shared Dirtied Blocks": 0,
-                                            "Shared Written Blocks": 0,
-                                            "Local Hit Blocks": 0,
-                                            "Local Read Blocks": 0,
-                                            "Local Dirtied Blocks": 0,
-                                            "Local Written Blocks": 0,
-                                            "Temp Read Blocks": 0,
-                                            "Temp Written Blocks": 0,
-                                            "Plans": [
-                                              {
-                                                "Node Type": "Seq Scan",
-                                                "Parent Relationship": "Outer",
-                                                "Parallel Aware": false,
-                                                "Async Capable": false,
-                                                "Relation Name": "invoice",
-                                                "Schema": "public",
-                                                "Alias": "i",
-                                                "Startup Cost": 0,
-                                                "Total Cost": 13.21,
-                                                "Plan Rows": 412,
-                                                "Plan Width": 8,
-                                                "Actual Startup Time": 0.014,
-                                                "Actual Total Time": 0.156,
-                                                "Actual Rows": 412,
-                                                "Actual Loops": 1,
-                                                "Output": [
-                                                  "i.invoice_id",
-                                                  "i.customer_id"
-                                                ],
-                                                "Filter": "(i.invoice_date >= (now() - '100 years'::interval))",
-                                                "Rows Removed by Filter": 0,
-                                                "Shared Hit Blocks": 6,
-                                                "Shared Read Blocks": 0,
-                                                "Shared Dirtied Blocks": 0,
-                                                "Shared Written Blocks": 0,
-                                                "Local Hit Blocks": 0,
-                                                "Local Read Blocks": 0,
-                                                "Local Dirtied Blocks": 0,
-                                                "Local Written Blocks": 0,
-                                                "Temp Read Blocks": 0,
-                                                "Temp Written Blocks": 0
-                                              }
-                                            ]
-                                          }
-                                        ]
+                                        "Temp Written Blocks": 0
                                       },
                                       {
                                         "Node Type": "Hash",
                                         "Parent Relationship": "Inner",
                                         "Parallel Aware": false,
                                         "Async Capable": false,
-                                        "Startup Cost": 2.59,
-                                        "Total Cost": 2.59,
-                                        "Plan Rows": 59,
+                                        "Startup Cost": 13.21,
+                                        "Total Cost": 13.21,
+                                        "Plan Rows": 412,
                                         "Plan Width": 4,
-                                        "Actual Startup Time": 0.031,
-                                        "Actual Total Time": 0.031,
-                                        "Actual Rows": 59,
+                                        "Actual Startup Time": 0.251,
+                                        "Actual Total Time": 0.252,
+                                        "Actual Rows": 412,
                                         "Actual Loops": 1,
                                         "Output": [
-                                          "c.customer_id"
+                                          "i.invoice_id"
                                         ],
                                         "Hash Buckets": 1024,
                                         "Original Hash Buckets": 1024,
                                         "Hash Batches": 1,
                                         "Original Hash Batches": 1,
-                                        "Peak Memory Usage": 11,
-                                        "Shared Hit Blocks": 2,
+                                        "Peak Memory Usage": 23,
+                                        "Shared Hit Blocks": 6,
                                         "Shared Read Blocks": 0,
                                         "Shared Dirtied Blocks": 0,
                                         "Shared Written Blocks": 0,
@@ -445,21 +341,23 @@
                                             "Parent Relationship": "Outer",
                                             "Parallel Aware": false,
                                             "Async Capable": false,
-                                            "Relation Name": "customer",
+                                            "Relation Name": "invoice",
                                             "Schema": "public",
-                                            "Alias": "c",
+                                            "Alias": "i",
                                             "Startup Cost": 0,
-                                            "Total Cost": 2.59,
-                                            "Plan Rows": 59,
+                                            "Total Cost": 13.21,
+                                            "Plan Rows": 412,
                                             "Plan Width": 4,
-                                            "Actual Startup Time": 0.013,
-                                            "Actual Total Time": 0.02,
-                                            "Actual Rows": 59,
+                                            "Actual Startup Time": 0.016,
+                                            "Actual Total Time": 0.184,
+                                            "Actual Rows": 412,
                                             "Actual Loops": 1,
                                             "Output": [
-                                              "c.customer_id"
+                                              "i.invoice_id"
                                             ],
-                                            "Shared Hit Blocks": 2,
+                                            "Filter": "(i.invoice_date >= (now() - '100 years'::interval))",
+                                            "Rows Removed by Filter": 0,
+                                            "Shared Hit Blocks": 6,
                                             "Shared Read Blocks": 0,
                                             "Shared Dirtied Blocks": 0,
                                             "Shared Written Blocks": 0,
@@ -521,7 +419,7 @@
                                         "Plan Rows": 3503,
                                         "Plan Width": 12,
                                         "Actual Startup Time": 0.01,
-                                        "Actual Total Time": 0.527,
+                                        "Actual Total Time": 0.538,
                                         "Actual Rows": 3503,
                                         "Actual Loops": 1,
                                         "Output": [
@@ -553,8 +451,8 @@
                                 "Total Cost": 6.47,
                                 "Plan Rows": 347,
                                 "Plan Width": 8,
-                                "Actual Startup Time": 0.119,
-                                "Actual Total Time": 0.119,
+                                "Actual Startup Time": 0.118,
+                                "Actual Total Time": 0.118,
                                 "Actual Rows": 347,
                                 "Actual Loops": 1,
                                 "Output": [
@@ -589,8 +487,8 @@
                                     "Total Cost": 6.47,
                                     "Plan Rows": 347,
                                     "Plan Width": 8,
-                                    "Actual Startup Time": 0.012,
-                                    "Actual Total Time": 0.06,
+                                    "Actual Startup Time": 0.011,
+                                    "Actual Total Time": 0.059,
                                     "Actual Rows": 347,
                                     "Actual Loops": 1,
                                     "Output": [
@@ -609,29 +507,62 @@
                                     "Temp Written Blocks": 0
                                   }
                                 ]
-                              },
+                              }
+                            ]
+                          },
+                          {
+                            "Node Type": "Hash",
+                            "Parent Relationship": "Inner",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Startup Cost": 4.75,
+                            "Total Cost": 4.75,
+                            "Plan Rows": 275,
+                            "Plan Width": 25,
+                            "Actual Startup Time": 0.112,
+                            "Actual Total Time": 0.113,
+                            "Actual Rows": 275,
+                            "Actual Loops": 1,
+                            "Output": [
+                              "ar.name",
+                              "ar.artist_id"
+                            ],
+                            "Hash Buckets": 1024,
+                            "Original Hash Buckets": 1024,
+                            "Hash Batches": 1,
+                            "Original Hash Batches": 1,
+                            "Peak Memory Usage": 24,
+                            "Shared Hit Blocks": 2,
+                            "Shared Read Blocks": 0,
+                            "Shared Dirtied Blocks": 0,
+                            "Shared Written Blocks": 0,
+                            "Local Hit Blocks": 0,
+                            "Local Read Blocks": 0,
+                            "Local Dirtied Blocks": 0,
+                            "Local Written Blocks": 0,
+                            "Temp Read Blocks": 0,
+                            "Temp Written Blocks": 0,
+                            "Plans": [
                               {
-                                "Node Type": "Hash",
-                                "Parent Relationship": "Inner",
+                                "Node Type": "Seq Scan",
+                                "Parent Relationship": "Outer",
                                 "Parallel Aware": false,
                                 "Async Capable": false,
-                                "Startup Cost": 4.75,
+                                "Relation Name": "artist",
+                                "Schema": "public",
+                                "Alias": "ar",
+                                "Startup Cost": 0,
                                 "Total Cost": 4.75,
                                 "Plan Rows": 275,
                                 "Plan Width": 25,
-                                "Actual Startup Time": 0.128,
-                                "Actual Total Time": 0.128,
+                                "Actual Startup Time": 0.017,
+                                "Actual Total Time": 0.049,
                                 "Actual Rows": 275,
                                 "Actual Loops": 1,
                                 "Output": [
                                   "ar.name",
                                   "ar.artist_id"
                                 ],
-                                "Hash Buckets": 1024,
-                                "Original Hash Buckets": 1024,
-                                "Hash Batches": 1,
-                                "Original Hash Batches": 1,
-                                "Peak Memory Usage": 24,
                                 "Shared Hit Blocks": 2,
                                 "Shared Read Blocks": 0,
                                 "Shared Dirtied Blocks": 0,
@@ -641,42 +572,75 @@
                                 "Local Dirtied Blocks": 0,
                                 "Local Written Blocks": 0,
                                 "Temp Read Blocks": 0,
-                                "Temp Written Blocks": 0,
-                                "Plans": [
-                                  {
-                                    "Node Type": "Seq Scan",
-                                    "Parent Relationship": "Outer",
-                                    "Parallel Aware": false,
-                                    "Async Capable": false,
-                                    "Relation Name": "artist",
-                                    "Schema": "public",
-                                    "Alias": "ar",
-                                    "Startup Cost": 0,
-                                    "Total Cost": 4.75,
-                                    "Plan Rows": 275,
-                                    "Plan Width": 25,
-                                    "Actual Startup Time": 0.019,
-                                    "Actual Total Time": 0.068,
-                                    "Actual Rows": 275,
-                                    "Actual Loops": 1,
-                                    "Output": [
-                                      "ar.name",
-                                      "ar.artist_id"
-                                    ],
-                                    "Shared Hit Blocks": 2,
-                                    "Shared Read Blocks": 0,
-                                    "Shared Dirtied Blocks": 0,
-                                    "Shared Written Blocks": 0,
-                                    "Local Hit Blocks": 0,
-                                    "Local Read Blocks": 0,
-                                    "Local Dirtied Blocks": 0,
-                                    "Local Written Blocks": 0,
-                                    "Temp Read Blocks": 0,
-                                    "Temp Written Blocks": 0
-                                  }
-                                ]
+                                "Temp Written Blocks": 0
                               }
                             ]
+                          }
+                        ]
+                      },
+                      {
+                        "Node Type": "Hash",
+                        "Parent Relationship": "Inner",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 12.8,
+                        "Total Cost": 12.8,
+                        "Plan Rows": 280,
+                        "Plan Width": 262,
+                        "Actual Startup Time": 0.021,
+                        "Actual Total Time": 0.022,
+                        "Actual Rows": 25,
+                        "Actual Loops": 1,
+                        "Output": [
+                          "g.name",
+                          "g.genre_id"
+                        ],
+                        "Hash Buckets": 1024,
+                        "Original Hash Buckets": 1024,
+                        "Hash Batches": 1,
+                        "Original Hash Batches": 1,
+                        "Peak Memory Usage": 10,
+                        "Shared Hit Blocks": 1,
+                        "Shared Read Blocks": 0,
+                        "Shared Dirtied Blocks": 0,
+                        "Shared Written Blocks": 0,
+                        "Local Hit Blocks": 0,
+                        "Local Read Blocks": 0,
+                        "Local Dirtied Blocks": 0,
+                        "Local Written Blocks": 0,
+                        "Temp Read Blocks": 0,
+                        "Temp Written Blocks": 0,
+                        "Plans": [
+                          {
+                            "Node Type": "Seq Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Relation Name": "genre",
+                            "Schema": "public",
+                            "Alias": "g",
+                            "Startup Cost": 0,
+                            "Total Cost": 12.8,
+                            "Plan Rows": 280,
+                            "Plan Width": 262,
+                            "Actual Startup Time": 0.011,
+                            "Actual Total Time": 0.014,
+                            "Actual Rows": 25,
+                            "Actual Loops": 1,
+                            "Output": [
+                              "g.name",
+                              "g.genre_id"
+                            ],
+                            "Shared Hit Blocks": 1,
+                            "Shared Read Blocks": 0,
+                            "Shared Dirtied Blocks": 0,
+                            "Shared Written Blocks": 0,
+                            "Local Hit Blocks": 0,
+                            "Local Read Blocks": 0,
+                            "Local Dirtied Blocks": 0,
+                            "Local Written Blocks": 0,
+                            "Temp Read Blocks": 0,
+                            "Temp Written Blocks": 0
                           }
                         ]
                       }
@@ -688,9 +652,9 @@
           }
         ]
       },
-      "Query Identifier": -5128658729453404000,
+      "Query Identifier": -4471064767647469600,
       "Planning": {
-        "Shared Hit Blocks": 611,
+        "Shared Hit Blocks": 587,
         "Shared Read Blocks": 0,
         "Shared Dirtied Blocks": 0,
         "Shared Written Blocks": 0,
@@ -701,33 +665,66 @@
         "Temp Read Blocks": 0,
         "Temp Written Blocks": 0
       },
-      "Planning Time": 6.256,
+      "Planning Time": 4.114,
       "Triggers": [],
-      "Execution Time": 7.355
+      "Execution Time": 6.776
     }
   ],
   "query_performance_summary": {
-    "execution_time_ms": 7.355,
+    "execution_time_ms": 6.776,
+    "execution_time_ms_before": 7.355,
+    "improvement_ms": 0.579,
+    "improvement_percent": 7.87,
     "top_level_operation": "Limit + Sort (top-N heapsort)",
-    "primary_join_mechanism": "Deep chain of Hash Joins (including one LEFT join for genre)",
+    "primary_join_mechanism": "Deep chain of Hash Joins; LEFT join only for genre",
     "scan_hotspots": {
-      "description": "multiple Seq Scans, especially",
+      "description": "Seq scans feed hash joins; the dominant work is CPU/hash, not I/O",
       "details": [
         {
           "table": "invoice_line",
           "scan_type": "Seq Scan",
-          "rows_handled": 2240
+          "actual_rows": 2240,
+          "time_ms": 0.234
         },
         {
           "table": "track",
           "scan_type": "Seq Scan",
-          "rows_handled": 3503
+          "actual_rows": 3503,
+          "time_ms": 0.538
         }
       ]
     },
     "buffer_usage": {
       "status": "All Hit blocks (0 reads)",
-      "notes": "The entire dataset was already cached in memory during execution."
+      "notes": "No physical reads; improvements come from reduced join-tree overhead (removing the unused customer join), not from I/O."
     }
-  }
+  },
+  "plan_deltas_that_matter": [
+    {
+      "node": "Join chain",
+      "after_observation": "The hash join node to `customer` is removed entirely, reducing join complexity/overhead while keeping the same aggregate + top-N sort pipeline."
+    },
+    {
+      "node": "Aggregate (Hashed)",
+      "after_observation": "Hash aggregation completes with no spill: HashAgg Batches = 1, Disk Usage = 0, Peak Memory Usage recorded (241)."
+    },
+    {
+      "node": "Sort (top-N heapsort)",
+      "after_observation": "Sort uses memory only (Sort Space Used = 26MB, top-N heapsort), keeping sort bounded due to LIMIT."
+    }
+  ],
+  "where_time_goes_most": [
+    {
+      "component": "Aggregate total",
+      "after_observation": "Actual Total Time ~6.438ms"
+    },
+    {
+      "component": "Sort total",
+      "after_observation": "Actual Total Time ~6.525ms"
+    },
+    {
+      "component": "Largest join work",
+      "after_observation": "Invoice_line ↔ invoice join (~1.295ms) plus building hash from track (~0.538ms)"
+    }
+  ]
 }
