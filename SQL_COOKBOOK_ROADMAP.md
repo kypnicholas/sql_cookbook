@@ -30,7 +30,7 @@
 | D       | Window functions and analytics                   | **100% (4/4)** |
 | E       | CTEs, recursive queries, and advanced logic      | **100% (3/3)** |
 | F       | Data transformation and cleaning                 | **100% (3/3)** |
-| G       | Indexing and performance tuning (DBA)            | **0% (0/4)**   |
+| G       | Indexing and performance tuning (DBA)            | **100% (4/4)** |
 | H       | EXPLAIN, profiling, and comparisons              | **0% (0/3)**   |
 | I       | Materialized views, caching, and pre-aggregation | **0% (0/2)**   |
 | J       | Transactions, concurrency, and safe migrations   | **0% (0/3)**   |
@@ -44,7 +44,7 @@
 | R       | Data lineage, documentation, and tests           | **0% (0/4)**   |
 | X       | Optional extras and polish                       | **0% (0/3)**   |
 
-Overall progress: **~39% complete** (22/56 tasks done).
+Overall progress: **~46% complete** (26/56 tasks done).
 
 ---
 
