@@ -31,7 +31,7 @@
 | E       | CTEs, recursive queries, and advanced logic      | **100% (3/3)** |
 | F       | Data transformation and cleaning                 | **100% (3/3)** |
 | G       | Indexing and performance tuning (DBA)            | **100% (4/4)** |
-| H       | EXPLAIN, profiling, and comparisons              | **0% (0/3)**   |
+| H       | EXPLAIN, profiling, and comparisons              | **33% (1/3)**  |
 | I       | Materialized views, caching, and pre-aggregation | **0% (0/2)**   |
 | J       | Transactions, concurrency, and safe migrations   | **0% (0/3)**   |
 | K       | Schema design, normalization, and refactoring    | **0% (0/2)**   |
@@ -44,7 +44,7 @@
 | R       | Data lineage, documentation, and tests           | **0% (0/4)**   |
 | X       | Optional extras and polish                       | **0% (0/3)**   |
 
-Overall progress: **~46% complete** (26/56 tasks done).
+Overall progress: **~48% complete** (27/56 tasks done).
 
 ---
 
@@ -215,7 +215,7 @@ Overall progress: **~46% complete** (26/56 tasks done).
 
 ### H. EXPLAIN, Profiling, and Comparisons - In Progress
 
-- [ ] H27 - Before/after plan annotation (`queries/027_explain_query.sql`, `analysis/027_explain_before.json`, `analysis/027_explain_after.json`, `analysis/027_explain_notes.md`, `migrations/027_create_index.sql`)
+- [X] H27 - Before/after plan annotation (`queries/027_explain_query.sql`, `analysis/027_explain_before.json`, `analysis/027_explain_after.json`, `analysis/027_explain_notes.md`, `migrations/027_create_index.sql`)
   - Pick one slow join-heavy sales query.
   - Save before and after plans around one optimization.
   - Annotate node-level differences (join type, scan type, cost/time/buffers).
